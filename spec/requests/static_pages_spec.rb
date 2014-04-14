@@ -11,12 +11,17 @@ describe "StaticPages" do
   describe "Home Page" do
 
   	it "should have the content 'Monitoring DB'" do
-  		visit '/static_pages/home'
+  		visit root_path
   		expect(page).to have_content('Monitoring DB')
   	end
+  end
 
+  describe "Signup Page" do
+    #Submitしたらモデルにユーザーオブジェクトが追加される
 
 
   end
+
+
 
 end
