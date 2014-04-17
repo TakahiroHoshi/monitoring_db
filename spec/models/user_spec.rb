@@ -47,6 +47,11 @@ describe User do
 		end
 	end
 
+	describe "with a password that's too short" do
+		before {@user.password = @user.password_confirmation = "a" * 5}
+		it {should be_invalid}
+	end
+
 	#name validation test
 	describe "when name is too long" do
 		before {@user.name = "a"*31}
