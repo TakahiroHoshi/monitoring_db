@@ -6,4 +6,19 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates :password, length: {minimum: 8}
+
+
+
+	class << self
+	  #search
+	  def search(query)
+	  	rel = order("id")
+	  	if query.present?
+	  		rel = rel.where("name LIKE ? OR full_name LIKE ?",
+	  			"%#{query}%", "%#{query}")
+	  	end
+	  	rel
+	  end
+	end
+
 end
