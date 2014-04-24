@@ -1,0 +1,23 @@
+<% provide(:title, 'Welcome back') %>
+<div class="text-center hero-unit">
+  <h1>RJB Monitoring DB</h1>
+
+  <h2>
+    This is a monitoring DB for RJB.
+  </h2>
+  <div class="row">
+  	<div class="span6 offset3">
+  		<%= form_for(:session, url: sessions_path) do |f| %>
+
+  			<%= f.label :email %>
+  			<%= f.text_field :email %> 
+
+  			<%= f.label :password %>
+  			<%= f.password_field :password %>
+<br>
+  			<%= f.submit "Login", class: "btn btn-large btn-primary" %>
+
+  		<% end %>
+  	</div>
+  </div>
+</div>

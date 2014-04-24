@@ -2,13 +2,19 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<nav>
-			<!-- ログイン前はアカウント発行を表示し、ログイン後はユーザー情報へのリンクを表示 -->
-			<%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
+				<% if signed_in? %>
+					<%= link_to "Profile", 'user_path(current_user)' %>
+				<% else %>
+					<%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
+				<% end %>
 				<ul class="nav pull-right">
 						<li><%= link_to "About", about_path %></li>
 					<li><%= link_to "Help", help_path %></li>
-					<!-- ログイン後のみログアウトへのリンクを表示する-->
-					<li><%= link_to "logout", '#' %></li>
+				<% if signed_in? %>
+					<li><%= link_to "Logout", signout_path, method: "delete" %></li>
+				<% else %>
+				<% end %>
+
 				</ul>
 			</nav>
 		</div>
