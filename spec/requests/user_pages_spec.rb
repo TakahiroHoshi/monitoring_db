@@ -33,7 +33,7 @@ describe "UserPages" do
 
 			describe "after saving the user" do
 				before {click_button submit}
-				let(:user){User.find_by(email: 'user@example.com')}
+				let(:user){User.find_by(email: 'tom.york@aef.aef')}
 
 				it {should have_link('Logout')}
 				it {should have_title(user.name)}
@@ -52,5 +52,49 @@ describe "UserPages" do
 
 		it {should have_content(user.name)}
 		it {should have_title(user.name)}
+	end
+
+	describe "edit" do
+		let(:user) {FactoryGirl.create(:user)}
+		before do
+			sign_in user
+			visit edit_user_path(user)
+		end
+
+		describe "page" do
+			it {should have_content("Update your profile")}
+			it {should have_title("Edit user")}
+		end
+
+		describe "with invalid information" do
+			before {click_button "Update"}
+
+			it {should have_content('エラー')}
+		end
+
+		describe "with valid information" do
+			let(:new_name) {"New Name"}
+			let(:new_email) {"new@example.com"}
+			let(:new_id_num) {"01012223"}
+			let(:new_organization) {"経営企画部"}
+			before do
+				fill_in "名前", with: new_name
+				fill_in "Eメール", with: new_email
+				fill_in "社員番号", with: new_id_num
+				fill_in "所属組織", with: new_organization
+				fill_in "パスワード", with: user.password
+				fill_in "パスワード確認", with: user.password
+				click_button "Update"
+			end
+
+			it {should have_title(new_name)}
+			it {should have_selector('div.alert.alert-success')}
+			it {should have_link('Logout', href: signout_path)}
+			specify {expect(user.reload.name).to eq new_name}
+			specify {expect(user.reload.email).to eq new_email}
+			specify {expect(user.reload.id_num).to eq new_id_num}
+			specify {expect(user.reload.organization).to eq new_organization}
+
+		end
 	end
 end
