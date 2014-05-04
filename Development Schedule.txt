@@ -1,10 +1,10 @@
 Development Schedule
 (1. Static Pageの作成)
 (2. User Modelの作成)
-3. Login/New Userページの実装
-	・Userコントローラのアクション実装
-	・フォーム実装
-	・adminのname space追加
+(3. Login/New Userページの実装)
+	(・Userコントローラのアクション実装)
+	(・フォーム実装)
+	#adminのname space追加
 	・adminのコントローラアクション実装
 	・adminページ実装
 	・動作確認
