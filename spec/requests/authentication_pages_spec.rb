@@ -32,7 +32,7 @@ describe "Authentication" do
 			before {sign_in user}
 
 			it {should have_title(user.name)}
-			it {should have_link('Users', href: users_path)}
+			it {should_not have_link('Users', href: users_path)}
 			it {should have_link('Logout', href: signout_path)}
 			it {should have_link('Show Profile', href: user_path(user))}
 			it {should have_link('Update Profile', href: edit_user_path(user))}
@@ -71,6 +71,22 @@ describe "Authentication" do
 		describe "for non-signed-in users" do
 			let(:user) {FactoryGirl.create(:user)}
 
+			describe "when attempting to visit a protected page" do
+				before do
+					visit edit_user_path(user)
+					fill_in "Eメール", with: user.email
+					fill_in "パスワード", with: user.password
+					click_button "Login"
+				end
+
+				describe "after signing in" do
+
+					it "should render the desired protected page" do
+						expect(page).to have_title('Edit Profile')
+					end
+				end
+			end
+
 			describe "in the Users controller," do
 
 				describe "visiting the edit page" do
@@ -81,6 +97,11 @@ describe "Authentication" do
 				describe "submitting to the update action" do
 					before {patch user_path(user)}
 					specify {expect(response).to redirect_to(root_path)}
+				end
+
+				describe "visiting the user index" do
+					before {visit users_path}
+					it {should have_title('Welcome back')}
 				end
 			end
 		end
@@ -99,26 +120,6 @@ describe "Authentication" do
 			describe 	"submitting a PATCH request to the Users#update action" do
 				before {patch user_path(wrong_user)}
 				specify {expect(response).to redirect_to(root_path)}
-			end
-		end
-
-		describe "for non-signed-in users" do
-			let(:user) {FactoryGirl.create(:user)}
-
-			describe "when attempting to visit a protected page" do
-				before do
-					visit edit_user_path(user)
-					fill_in "Eメール", with: user.email
-					fill_in "パスワード", with: user.password
-					click_button "Login"
-				end
-
-				describe "after signing in" do
-
-					it "should render the desired protected page" do
-						expect(page).to have_title('Edit Profile')
-					end
-				end
 			end
 		end
 	end
