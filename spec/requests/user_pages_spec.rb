@@ -105,12 +105,12 @@ describe "User Pages" do
 		end
 
 		describe "page" do
-			it {should have_content("Update Profile")}
-			it {should have_title("Update Profile")}
+			it {should have_content('Update Profile')}
+			it {should have_title('Update Profile')}
 		end
 
 		describe "with invalid information" do
-			before {click_button "Update"}
+			before {click_button 'Update'}
 
 			it {should have_content('エラー')}
 		end
