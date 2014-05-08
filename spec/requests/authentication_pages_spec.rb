@@ -82,7 +82,7 @@ describe "Authentication" do
 				describe "after signing in" do
 
 					it "should render the desired protected page" do
-						expect(page).to have_title('Edit Profile')
+						expect(page).to have_title('Update Profile')
 					end
 				end
 			end
@@ -113,7 +113,7 @@ describe "Authentication" do
 
 			describe "submitting a GET request to the Users#edit action" do
 				before {get edit_user_path(wrong_user)}
-				it {should_not have_title("Edit Profile")}
+				it {should_not have_title("Update Profile")}
 				specify {expect(response).to redirect_to(root_path)}
 			end
 
