@@ -7,18 +7,23 @@ describe "User Pages" do
 	describe "index" do
 
 		let(:user) {FactoryGirl.create(:user)}
+		let(:admin) {FactoryGirl.create(:admin)}
 
 		before do
 			sign_in user
 			visit users_path
 		end
 
-		it {should have_title('All Users')}
-		it {should have_content('All Users')}
+		it {should_not have_title('All Users')}
+		it {should_not have_content('All Users')}
 
 		describe "pagination" do
 			before(:all) {30.times {FactoryGirl.create(:user)}}
-			after(:all) {User.delete_all}
+
+			before do
+				sign_in admin
+				visit users_path
+			end
 
 			it {should have_selector('div.pagination')}
 
@@ -30,22 +35,23 @@ describe "User Pages" do
 		end
 
 		describe "delete links" do
-      let(:admin) { FactoryGirl.create(:admin) }
+#      let(:admin) { FactoryGirl.create(:admin) }
       before do
         sign_in admin
         visit users_path
       end
 
       it { should have_link('Delete', href: user_path(User.first)) }
+      
       it "should be able to delete another user" do
         expect do
           click_link('Delete', match: :first)
         end.to change(User, :count).by(-1)
       end
       
-      it { should have_link('Delete', href: user_path(admin)) }
+      it { should_not have_link('Delete', href: user_path(admin)) }
     end
-
+			after(:all) {User.delete_all}
 	end
 
 	describe "signup page" do
@@ -97,6 +103,7 @@ describe "User Pages" do
 		it {should have_content(user.name)}
 		it {should have_title(user.name)}
 	end
+
 
 	describe "edit" do
 		let(:user) {FactoryGirl.create(:user)}

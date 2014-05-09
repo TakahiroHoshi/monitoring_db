@@ -47,7 +47,7 @@ describe "Authentication" do
 
 				describe "visiting the user index" do
 					before {visit users_path}
-					it {should have_title('All Users')}
+					it {should_not have_title('All Users')}
 				end
 			end
 
@@ -101,6 +101,7 @@ describe "Authentication" do
 
 				describe "visiting the user index" do
 					before {visit users_path}
+
 					it {should have_title('Welcome back')}
 				end
 			end
