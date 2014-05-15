@@ -2,28 +2,37 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<nav>
-				<% if signed_in? %>
-				<ul class="nav pull-left">
-					<% if current_user.admin? && !current_user?(@user) %>
-						<li><%= link_to "Users", users_path %></li>
-					<% end %>
-					<li id="fat-menu" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
-						<ul class="dropdown-menu">
-							<li><%= link_to "Show Profile", user_path(current_user) %></li>
-							<li><%= link_to "Update Profile", edit_user_path(current_user) %></li>
-							</ul>
-					</li>
-				</ul>
+				<%# when signed in %>
+
+					<% if signed_in? %>
+						<ul class="nav pull-left">
+							<% if current_user.admin? %>
+								<li><%= link_to "Users", users_path %></li>
+							<% end %>
+								<li id="fat-menu" class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
+									<ul class="dropdown-menu">
+										<li><%= link_to "Show Profile", user_path(current_user) %></li>
+										<li><%= link_to "Update Profile", edit_user_path(current_user) %></li>
+									</ul>
+								</li>
+						</ul>
+						<ul class="nav pull-right">
+							<li><%= link_to "About", about_path %></li>
+							<li><%= link_to "Help", help_path %></li>
+							<li><%= link_to "Logout", signout_path, method: "delete"%></li>
+						</ul>
+
+				<%# when signed out %>
 				<% else %>
+				<div class="nav pull-left">
 					<%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %>
-				<% end %>
+				</div>
 				<ul class="nav pull-right">
 					<li><%= link_to "About", about_path %></li>
 					<li><%= link_to "Help", help_path %></li>
-					<li><%= link_to "Logout", signout_path, method: "delete"%></li>
-
 				</ul>
+				<% end %>
 			</nav>
 		</div>
 	</div>

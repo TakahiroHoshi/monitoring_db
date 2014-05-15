@@ -38,23 +38,100 @@ Monitoring DB 要件定義
 	11. Help
 
 【DB設計】
-■プレイヤーデータベース
-	・企業名
-	・サービスカテゴリ
-	・簡単な概要
-	・オフィス住所
-	・設立年月日
-	・ボードメンバー	
-	・Webサイト
-	・Blogサイト
-	・Twitter名(タイムラインも？)
-	・Facebookサイト
-	・コンタクトメールアドレス
-	・スクリーンショット、動画
-	・Exit方式
-	・Exit価格
-	・Exit日
-	・競合企業
+■company
+	+＊c_name
+	・c_logo
+			画像
+	＊service_category
+			一つ以上
+	・c_description
+	・c_founded
+	・c_founder
+	・c_closed
+	・stage
+			シードラウンドのステージ: angel, early, seed A...
+	・c_member
+	・c_email
+	・c_competitor
+			複数可
+			登録済みcompanyから
+			c_categoryで自動的に追加？
+	・c_funding
+	・c_subsidiary
+	・c_parent
+
+■location
+	+＊l_company_name
+	＊hq
+			boolean
+	＊address
+
+■web
+	＊u_company_name
+	＊url_category
+			restrict: company, service, blog, twitter, facebook, linkedin
+	＊url
+
+■investor
+	＊i_name
+	・i_logo
+			画像
+	＊i_category
+			一つ以上
+	・i_description
+	・funds_raised
+	・i_founded
+	・i_closed
+	・i_founder
+	・i_cxo
+	＊i_web_url
+	・i_company_url
+	・i_blog_url
+	・i_twitter
+			複数可
+	・i_facebook
+			複数可
+	・i_email
+	・i_competitor
+			複数可
+			i_categoryで自動的に追加？
+	・i_subsidiary
+	・i_parent
+	・investments
+			出資合計額
+
+■person
+	＊p_name
+	・p_email
+	・p_twitter
+	・p_facebook
+	・p_linkedin
+	＊p_description
+
+■funding
+	＊round
+	＊amount
+	＊f_investor
+	＊f_company
+	＊announced_date
+
+■exit
+	＊exit_type
+	・exit_price
+	＊exit_date
+
+■press
+	＊pr_title
+	＊published_date
+	・pr_url
+	・pr_content
+	・pr_person_name
+	・pr_company_name
+
+■service
+
+■extra
+	＊e_company_name
 
 
 【入力画面】
