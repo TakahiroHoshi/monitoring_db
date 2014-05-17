@@ -11,4 +11,17 @@ FactoryGirl.define do
 			admin true
 		end
 	end
+
+	factory :company do
+		sequence(:name) {|n| "Company_#{n}"}
+		sequence(:description) {"This company is just great"}
+		founded_date {1.years.ago}
+		closed_date {1.days.ago}
+		stage "Round A"
+	end
+
+	factory :person do
+		sequence(:name) {|n| "Peter Rich#{n}"}
+		position "CEO"
+	end
 end

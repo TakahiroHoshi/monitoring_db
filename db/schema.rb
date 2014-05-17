@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423122042) do
+ActiveRecord::Schema.define(version: 20140517045603) do
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.binary   "logo"
+    t.text     "description"
+    t.date     "founded_date"
+    t.date     "closed_date"
+    t.string   "stage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"
+
+  create_table "people", force: true do |t|
+    t.string   "name"
+    t.string   "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+  end
+
+  add_index "people", ["name"], name: "index_people_on_name"
 
   create_table "users", force: true do |t|
     t.string   "name"

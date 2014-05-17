@@ -9,7 +9,10 @@
 	 		<li>
 				<%= link_to user.name, user %> | 
 				<%= link_to user.email, user %> | 
-				<%= link_to "Delete", user, method: :delete, data: {confirm: "You sure?"} %>
+				<% if user.admin? %>
+					<% else %>
+					<%= link_to "Delete", user, method: :delete, data: {confirm: "You sure?"} %>
+				<% end %>
 			</li>
 		<% end %>
 	</ul>
