@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
-	validates :name, presence:true
+	has_many :people
+	validates :name, presence:true, length: {maximum: 200}
 
 end

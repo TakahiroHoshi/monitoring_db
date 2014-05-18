@@ -23,5 +23,6 @@ FactoryGirl.define do
 	factory :person do
 		sequence(:name) {|n| "Peter Rich#{n}"}
 		position "CEO"
+		company
 	end
 end
