@@ -1,10 +1,12 @@
 <% provide(:title, @company.name) %>
 <div class="row">
-	<aside class="span4">
-		<section>
-			<h1>
-				<%= @company.name %>
-			</h1>
-		</section>
-	</aside>
+	<section class="span4">
+		<h1>
+			<%= @company.name %>
+		</h1>
+	</section>
+	<section class="span4">
+			<%= render @company %>
+	</section>
+
 </div>

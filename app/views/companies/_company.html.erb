@@ -1,0 +1,12 @@
+<ul>
+	<li>詳細: <%= company.description %></li>
+	<li>設立日: <%= company.founded_date %></li>
+	<li>クローズ日: <%= company.closed_date %></li>
+	<li>ステージ: <%= company.stage %></li>
+	<li class="timestamp">
+		Created: <%= time_ago_in_words(company.created_at) %>
+	</li>
+	<li class="timestamp">
+		Updated: <%= time_ago_in_words(company.updated_at) %>
+	</li>
+</ul>
