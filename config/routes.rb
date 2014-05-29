@@ -3,6 +3,7 @@ MonitoringDb::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy] 
   resources :companies
+  resources :people
   #get "users/new"
   root 'sessions#new'
   match 'signout', to: 'sessions#destroy', via: 'delete'

@@ -30,7 +30,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-  	if @company.update_attributes(user_params)
+  	if @company.update_attributes(company_params)
   		flash[:success] = "Successfully updated."
   		redirect_to @company
   	else
