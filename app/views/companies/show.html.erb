@@ -4,6 +4,9 @@
 		<h1>
 			<%= @company.name %>
 		</h1>
+		<div>
+			<%= link_to "Edit company info", edit_company_path %>
+		</div>
 		<div class="timestamp">
 			<small>Created: <%= @company.created_at %><br />
 			Updated: <%= @company.updated_at %></small>

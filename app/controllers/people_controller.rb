@@ -2,9 +2,9 @@ class PeopleController < ApplicationController
   before_action :signed_in_user
 	#before_action :observer_user, only: [:index, :search, :show]
 
-#  def index
-#  	@people = Person.all.paginate(page: params[:page])
-#  end
+  def index
+  	@people = Person.all.paginate(page: params[:page])
+  end
 
   def new
   	@person = Person.new
@@ -28,11 +28,12 @@ class PeopleController < ApplicationController
 	end
 
   def edit
+    @person = Person.find(params[:id])
   end
 
   def update
   	if @person.update_attributes(person_params)
-  		flash[:success] = "Successfully updated."
+  		flash[:success] = "Updated successfully."
   		redirect_to @person
   	else
   		render 'edit'

@@ -4,6 +4,9 @@
 		<h1>
 			<%= @person.name %>
 		</h1>
+  <div>
+    <%= link_to "Edit #{@person.name}", edit_person_path %>
+  </div>
 	</section>
 	<section class="span4">
 			<%= render @person %>

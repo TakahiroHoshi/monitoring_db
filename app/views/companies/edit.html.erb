@@ -1,0 +1,34 @@
+<% provide(:title, 'Update company') %>
+<h1>Update company information</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@company) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :name, "企業名" %>
+			<%= f.text_field :name %>
+
+			<!--
+			%= f.label :logo, "ロゴ" %>
+			%= f. :logo %>
+			-->
+
+			<%= f.label :description, "概要" %>
+			<%= f.text_area :description %>
+
+			<%= f.label :founded_date, "設立日" %>
+			<%= f.date_field :founded_date %>
+
+			<%= f.label :closed_date, "解散日" %>
+			<%= f.date_field :closed_date %>
+
+			<%= f.label :stage, "ステージ" %>
+			<%= f.text_field :stage %>
+
+			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+			
+		<% end %>
+	</div>
+</div>
+
