@@ -4,12 +4,19 @@
 		<h1>
 			<%= @company.name %>
 		</h1>
+		<div class="timestamp">
+			<small>Created: <%= @company.created_at %><br />
+			Updated: <%= @company.updated_at %></small>
+		</div>
 	</section>
 	<section class="span4">
 		<%= render @company %>
 	</section>
 	<section class="span4">
-		<%= render @person %>
+		<% unless @company.people.empty? %>
+			<%= render @people %>
+			<%= will_paginate @people %>
+		<% end %>
 	</section>
 
 </div>

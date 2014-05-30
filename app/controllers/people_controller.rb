@@ -1,9 +1,10 @@
 class PeopleController < ApplicationController
+  before_action :signed_in_user
 	#before_action :observer_user, only: [:index, :search, :show]
 
-  def index
-  	@people = Person.paginate(page: params[:page])
-  end
+#  def index
+#  	@people = Person.all.paginate(page: params[:page])
+#  end
 
   def new
   	@person = Person.new
@@ -52,4 +53,12 @@ class PeopleController < ApplicationController
   	def observer_user
   		redirect_to 'show' unless current_user.observer?
   	end
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to root_path, notice: "Please sign in."
+      end
+    end
+
 end

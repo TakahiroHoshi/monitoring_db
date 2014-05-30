@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :signed_in_user
 	#before_action :observer_user, only: [:index, :search, :show]
 
   def index
@@ -21,6 +22,7 @@ class CompaniesController < ApplicationController
 
   def show
   	@company = Company.find(params[:id])
+    @people = @company.people.paginate(page: params[:page])
   end
 
 	def search
@@ -52,4 +54,11 @@ class CompaniesController < ApplicationController
   	def observer_user
   		redirect_to 'show' unless current_user.observer?
   	end
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to root_path, notice: "Please sign in."
+      end
+    end
 end
