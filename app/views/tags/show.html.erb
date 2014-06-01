@@ -1,0 +1,15 @@
+<% provide(:title, @tag.tag) %>
+<div class="row">
+	<section class="span4">
+		<h1>
+			<%= @tag.tag %>
+		</h1>
+  <div>
+    <%= link_to "Edit #{@tag.tag}", edit_tag_path %>
+  </div>
+	</section>
+	<section class="span4">
+			<%= render @tag %>
+	</section>
+
+</div>

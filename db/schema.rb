@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517045603) do
+ActiveRecord::Schema.define(version: 20140601060424) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20140517045603) do
 
   add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"
 
+  create_table "companies_tags", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "companies_tags", ["company_id", "tag_id"], name: "index_companies_tags_on_company_id_and_tag_id"
+
   create_table "people", force: true do |t|
     t.string   "name"
     t.string   "position"
@@ -35,6 +44,14 @@ ActiveRecord::Schema.define(version: 20140517045603) do
   end
 
   add_index "people", ["name"], name: "index_people_on_name"
+
+  create_table "tags", force: true do |t|
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["tag"], name: "index_tags_on_tag"
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -32,6 +32,7 @@ class PeopleController < ApplicationController
   end
 
   def update
+    @person = Person.find(params[:id])
   	if @person.update_attributes(person_params)
   		flash[:success] = "Updated successfully."
   		redirect_to @person

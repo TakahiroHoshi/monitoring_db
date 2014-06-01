@@ -6,7 +6,7 @@
 		<%= form_for(@company) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.label :name, "企業名" %>
+			<%= f.label :name %>
 			<%= f.text_field :name %>
 
 			<!--
@@ -14,17 +14,22 @@
 			%= f. :logo %>
 			-->
 
-			<%= f.label :description, "概要" %>
+			<%= f.label :description %>
 			<%= f.text_area :description %>
 
-			<%= f.label :founded_date, "設立日" %>
+			<%= f.label :founded_date %>
 			<%= f.date_field :founded_date %>
 
-			<%= f.label :closed_date, "解散日" %>
+			<%= f.label :closed_date %>
 			<%= f.date_field :closed_date %>
 
-			<%= f.label :stage, "ステージ" %>
+			<%= f.label :stage %>
 			<%= f.text_field :stage %>
+
+			<%= fields_for @tag do |c| %>
+				<%= c.label :tag %>
+				<%= c.text_field :tag %>
+			<% end %>
 
 			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 			

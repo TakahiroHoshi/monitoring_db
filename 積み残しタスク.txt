@@ -1,3 +1,5 @@
 積み残しタスク
 ・User Modelのパスワード要件の複雑化(8文字以上->英数字大文字小文字、特殊記号含む8文字)
 ・UserモデルのER図
+・CompanyモデルのDescriptionのテキストボックスが改行を表現できていない。
+・CompaniesTagのindexをRailsTutorialのリスト11.1に合わせて修正する

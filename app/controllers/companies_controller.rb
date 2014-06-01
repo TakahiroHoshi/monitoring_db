@@ -23,6 +23,7 @@ class CompaniesController < ApplicationController
   def show
   	@company = Company.find(params[:id])
     @people = @company.people.paginate(page: params[:page])
+    @tag = @company.tags.find(params[:id])
   end
 
 	def search
@@ -33,6 +34,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    @company = Company.find(params[:id])
   	if @company.update_attributes(company_params)
   		flash[:success] = "Updated successfully."
   		redirect_to @company
