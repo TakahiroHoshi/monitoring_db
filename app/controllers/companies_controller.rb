@@ -23,7 +23,6 @@ class CompaniesController < ApplicationController
   def show
   	@company = Company.find(params[:id])
     @people = @company.people.paginate(page: params[:page])
-    @tag = @company.tags.find(params[:id])
   end
 
 	def search
@@ -51,7 +50,7 @@ class CompaniesController < ApplicationController
 
   private
     def company_params
-      params.require(:company).permit(:name, :description, :founded_date, :closed_date, :stage)
+      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :category_list)
     end
 
   	def observer_user

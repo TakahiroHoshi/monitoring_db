@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601060424) do
+ActiveRecord::Schema.define(version: 20140602113612) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -26,15 +26,6 @@ ActiveRecord::Schema.define(version: 20140601060424) do
 
   add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"
 
-  create_table "companies_tags", force: true do |t|
-    t.integer  "company_id"
-    t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "companies_tags", ["company_id", "tag_id"], name: "index_companies_tags_on_company_id_and_tag_id"
-
   create_table "people", force: true do |t|
     t.string   "name"
     t.string   "position"
@@ -45,13 +36,24 @@ ActiveRecord::Schema.define(version: 20140601060424) do
 
   add_index "people", ["name"], name: "index_people_on_name"
 
-  create_table "tags", force: true do |t|
-    t.string   "tag"
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  add_index "tags", ["tag"], name: "index_tags_on_tag"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+
+  create_table "tags", force: true do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"
