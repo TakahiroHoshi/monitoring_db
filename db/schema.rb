@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602113612) do
+ActiveRecord::Schema.define(version: 20140605221957) do
+
+  create_table "comments", force: true do |t|
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["comment"], name: "index_comments_on_comment"
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -26,6 +34,34 @@ ActiveRecord::Schema.define(version: 20140602113612) do
 
   add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"
 
+  create_table "links", force: true do |t|
+    t.string   "type"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", force: true do |t|
+    t.boolean  "hq"
+    t.string   "name"
+    t.string   "country"
+    t.string   "state"
+    t.string   "address"
+    t.string   "postal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "news_articles", force: true do |t|
+    t.date     "date"
+    t.string   "title"
+    t.text     "content"
+    t.text     "comment"
+    t.string   "publisher"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", force: true do |t|
     t.string   "name"
     t.string   "position"
@@ -35,6 +71,18 @@ ActiveRecord::Schema.define(version: 20140602113612) do
   end
 
   add_index "people", ["name"], name: "index_people_on_name"
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "type"
+    t.date     "released_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["name"], name: "index_products_on_name"
+  add_index "products", ["type"], name: "index_products_on_type"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
