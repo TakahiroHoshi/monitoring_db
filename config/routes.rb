@@ -5,6 +5,7 @@ MonitoringDb::Application.routes.draw do
   resources :companies
   resources :people
   resources :tag
+  resources :products
   #get "users/new"
   root 'sessions#new'
   match 'signout', to: 'sessions#destroy', via: 'delete'

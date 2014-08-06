@@ -15,6 +15,14 @@
 	<section class="span4">
 		<%= render @company %>
 	</section>
+
+	<section class="span4">
+		<% unless @company.products.empty? %>
+			<%= render @products %>
+			<%= will_paginate @products %>
+		<% end %>
+	</section>
+
 	<section class="span4">
 		<% unless @company.people.empty? %>
 			<%= render @people %>

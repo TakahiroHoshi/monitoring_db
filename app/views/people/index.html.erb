@@ -1,5 +1,5 @@
 <% provide(:title, 'All People') %>
-<% if current_user.admin? %>
+<% if signed_in? %>
 	<h1>All People</h1>
 
 	<%= will_paginate %>

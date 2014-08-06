@@ -23,6 +23,7 @@ class CompaniesController < ApplicationController
   def show
   	@company = Company.find(params[:id])
     @people = @company.people.paginate(page: params[:page])
+    @products = @company.products.paginate(page: params[:page])
   end
 
 	def search
