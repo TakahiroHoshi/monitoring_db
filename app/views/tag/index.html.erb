@@ -1,0 +1,19 @@
+<% provide(:title, 'All Tags') %>
+<% if signed_in? %>
+	<h1>All Companies</h1>
+
+	<%= will_paginate %>
+
+	<ul class="tags">
+		<% @tag.each do |tag| %>
+	 		<li>
+				<%= link_to tag.name, tag %> | 
+				<%= link_to "Delete", tag, method: :delete, data: {confirm: "You sure?"} %>
+			</li>
+		<% end %>
+	</ul>
+	<%= will_paginate %>
+
+<% else %>
+Not allowed.
+<% end %>

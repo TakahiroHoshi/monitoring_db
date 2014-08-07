@@ -1,13 +1,12 @@
 積み残しタスク
 ・User Modelのパスワード要件の複雑化(8文字以上->英数字大文字小文字、特殊記号含む8文字)
-・UserモデルのER図
-・CompanyモデルのDescriptionのテキストボックスが改行を表現できていない。
 ・CompaniesTagのindexをRailsTutorialのリスト11.1に合わせて修正する
 ・検索の実装
 ・Companyに人が紐付いていなかったらperson.newへのリンクを表示する
 ・タグによる対象Companyのリスト化
-・テーブルをまたがってデータをcsvか何かで抽出できるようにする
+・(テーブルをまたがって)データをcsvか何かで抽出できるようにする
 ・peopleモデルのCompanyを複数アサインするとうまく動かない
+・Companiesのレイアウトを修正
 
 
-
+総務部長
