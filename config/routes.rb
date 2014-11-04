@@ -3,7 +3,6 @@ MonitoringDb::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy] 
   resources :companies
-  resources :people
   resources :tag
   resources :products
   #get "users/new"

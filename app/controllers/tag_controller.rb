@@ -22,6 +22,9 @@ class TagController < ApplicationController
 	end
 
 	def destroy
+ 		Tag.find(params[:id]).destroy
+    flash[:success] = "tag deleted."
+    redirect_to tag_index_path
 	end
 
 end

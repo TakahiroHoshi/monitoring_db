@@ -23,11 +23,4 @@
 		<% end %>
 	</section>
 
-	<section class="span4">
-		<% unless @company.people.empty? %>
-			<%= render @people %>
-			<%= will_paginate @people %>
-		<% end %>
-	</section>
-
 </div>

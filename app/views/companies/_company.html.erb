@@ -8,4 +8,6 @@
 <h4>Stage</h4>
 <%= company.stage %>
 <h4>Category</h4>
-<%= company.category_list %>
+<% @company.category_list.each do |tag| %>
+	<%= link_to "#{tag}", "http://#{tag}" %>
+<% end %>

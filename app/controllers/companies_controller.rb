@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
 
   def new
   	@company = Company.new
+    @category_list = Company.category_counts.order("taggings_count DESC")
   end
 
   def create
@@ -22,7 +23,6 @@ class CompaniesController < ApplicationController
 
   def show
   	@company = Company.find(params[:id])
-    @people = @company.people.paginate(page: params[:page])
     @products = @company.products.paginate(page: params[:page])
   end
 
@@ -31,6 +31,7 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find(params[:id])
+    @category_list = Company.category_counts.order("taggings_count DESC")
   end
 
   def update
