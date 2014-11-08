@@ -6,7 +6,9 @@
 		</h1>
 	</section>
 	<section class="span4">
-		<%= render @company %>
+		<% @tagged_company.each do |company| %>
+			<%= link_to company.name, company_path(id: company.id) %><br />
+		<% end %>
 	</section>
 
 </div>

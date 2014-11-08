@@ -34,7 +34,7 @@
 			<% end %>
 			<%= f.collection_select(:category_list, @category_list, :id, :name, :prompt => "カテゴリを選択") %>
 -->
-			<%= link_to "Edit tag list", tag_index_path, :target => "new" %>
+			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
 
 			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
 			

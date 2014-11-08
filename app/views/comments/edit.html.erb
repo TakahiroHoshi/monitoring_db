@@ -1,0 +1,20 @@
+<% provide(:title, 'Comment') %>
+<h1>Edit comment</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@comment) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :comment, "Comment" %>
+			<%= f.text_area :comment %>
+
+			<%= f.label :company_id, "Company ID" %>
+			<%= f.text_field :company_id %>
+
+			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+			
+		<% end %>
+	</div>
+</div>
+

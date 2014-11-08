@@ -1,0 +1,20 @@
+<% provide(:title, 'All Comments') %>
+<% if signed_in? %>
+	<h1>All comments</h1>
+
+	<%= will_paginate %>
+
+	<ul class="comments">
+		<% @comments.each do |com| %>
+	 		<li>
+				<%= com.comment %> | 
+				<%= link_to "Edit", edit_comment_path(com) %> | 
+				<%= link_to "Delete", com, method: :delete, data: {confirm: "You sure?"} %>
+			</li>
+		<% end %>
+	</ul>
+	<%= will_paginate %>
+
+<% else %>
+Not allowed.
+<% end %>

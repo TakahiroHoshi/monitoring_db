@@ -24,9 +24,6 @@ class ProductsController < ApplicationController
   	@product = Product.find(params[:id])
   end
 
-	def search
-	end
-
   def edit
     @product = Product.find(params[:id])
   end

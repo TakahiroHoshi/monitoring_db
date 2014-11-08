@@ -1,6 +1,6 @@
 <% provide(:title, @company.name) %>
 <div class="row">
-	<section class="span4">
+	<div class="segment span6">
 		<h1>
 			<%= @company.name %>
 		</h1>
@@ -11,16 +11,27 @@
 			<small>Created: <%= @company.created_at %><br />
 			Updated: <%= @company.updated_at %></small>
 		</div>
-	</section>
-	<section class="span4">
+	</div>
+	<div class="segment span6">
 		<%= render @company %>
-	</section>
+	</div>
 
-	<section class="span4">
+	<div class="segment span4">
 		<% unless @company.products.empty? %>
 			<%= render @products %>
 			<%= will_paginate @products %>
 		<% end %>
-	</section>
+	</div>
+
+	<div class="segment span4">
+		<h4>Comments</h4>
+		<% unless @company.comments.empty? %>
+			<ul>
+				<% @comments.each do |com| %>
+				<li><%= com.comment %></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</div>
 
 </div>

@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+
+ div.segment{
+	border-bottom: solid 1px #333333;
+ 	margin-top: 20px;
+ 	margin-bottom: 20px;
+ }

@@ -27,6 +27,8 @@
 			<%= f.label :category_list %>
 			<%= f.text_field :category_list %>
 
+			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
+
 			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 			
 		<% end %>
