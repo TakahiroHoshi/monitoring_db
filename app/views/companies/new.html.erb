@@ -6,25 +6,31 @@
 		<%= form_for(@company) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.label :name %>
+			<%= f.label :name, "Company Name" %>
 			<%= f.text_field :name %>
 
-			<%= f.label :logo %>
+			<%= f.label :logo, "Logo" %>
 			<%= f.file_field :logo, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
 
-			<%= f.label :description %>
+			<%= f.label :hq_country, "HQ Country" %>
+			<%= f.text_field :hq_country %>
+
+			<%= f.label :multinational, "Multinational Capacity" %>
+			<%= f.text_field :multinational %>
+
+			<%= f.label :description, "Description" %>
 			<%= f.text_area :description %>
 
-			<%= f.label :founded_date %>
+			<%= f.label :founded_date, "Founded on" %>
 			<%= f.date_field :founded_date %>
 
-			<%= f.label :closed_date %>
+			<%= f.label :closed_date, "Closed on" %>
 			<%= f.date_field :closed_date %>
 
-			<%= f.label :stage %>
+			<%= f.label :stage, "Investment Round" %>
 			<%= f.text_field :stage %>
 
-			<%= f.label :category_list %>
+			<%= f.label :category_list, "Category List" %>
 			<%= f.text_field :category_list %>
 
 			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />

@@ -1,0 +1,11 @@
+<% provide(:title) %>
+<div class="row">
+    <%= link_to Company.find_by_id(@news_article.company_id).name, company_path(id: @news_article.company_id) %><br />
+    <h4>Title</h4>
+    [<%= @news_article.date %>] <%= link_to @news_article.title, @news_article.url %><br />
+    by <%= @news_article.publisher %>
+    <h4>Article</h4>
+    <%= @news_article.content%>
+    <h4>Comment</h4>
+    <%= @news_article.comment%>
+</div>

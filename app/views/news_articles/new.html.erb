@@ -1,0 +1,37 @@
+<% provide(:title, 'New article') %>
+<h1>Add a news article</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@news_article) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :date, "Article Date" %>
+			<%= f.date_field :date %>
+
+			<%= f.label :title, "Title" %>
+			<%= f.text_field :title %>
+
+			<%= f.label :url, "URL" %>
+			<%= f.text_field :url %>
+
+
+			<%= f.label :content, "Content" %>
+			<%= f.text_area :content %>
+
+			<%= f.label :comment, "Comment" %>
+			<%= f.text_area :comment %>
+
+			<%= f.label :publisher, "Publisher" %>
+			<%= f.text_field :publisher %>
+
+			<%= f.label :company_id, "Company ID" %>
+			<%= f.text_field :company_id %>
+			<br />
+
+			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+			
+		<% end %>
+	</div>
+</div>
+

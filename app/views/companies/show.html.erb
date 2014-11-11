@@ -4,6 +4,15 @@
 		<h1>
 			<%= @company.name %>
 		</h1>
+		<div class="logo">
+			<% %>
+		</div>
+		<div class="location">
+			<h4>HQ Country</h4>
+			<%= @company.hq_country %>
+			<h4>Multinational Capacity</h4>
+			<%= @company.multinational %>
+		</div>
 		<div>
 			<%= link_to "Edit company info", edit_company_path %>
 		</div>
@@ -31,6 +40,34 @@
 				<li><%= com.comment %></li>
 				<% end %>
 			</ul>
+		<% end %>
+	</div>
+
+	<div class="segment span4">
+		<h4>Links</h4>
+		<% unless @company.links.empty? %>
+			<ul>
+				<% @links.each do |link| %>
+				<li><%= link.link_type %> | <%= link_to "URL", link.url %></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</div>
+
+	<div class="segment span6">
+		<h4>News Articles</h4>
+		<% unless @company.news_articles.empty? %>	
+			<% @news_articles.each do |article| %>
+				<div class = "segment">
+			    <h4>Title</h4>
+			    [<%= article.date %>] <%= link_to article.title, article.url %><br />
+			    by <%= article.publisher %>
+			    <h4>Article</h4>
+			    <%= article.content%>
+			    <h4>Comment</h4>
+			    <%= article.comment%>
+			  </div>
+		  <% end %>
 		<% end %>
 	</div>
 

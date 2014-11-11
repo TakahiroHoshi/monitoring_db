@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108080956) do
+ActiveRecord::Schema.define(version: 20141111124523) do
 
   create_table "comments", force: true do |t|
     t.text     "comment"
@@ -31,26 +31,18 @@ ActiveRecord::Schema.define(version: 20141108080956) do
     t.string   "stage"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "hq_country"
+    t.string   "multinational"
   end
 
   add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"
 
   create_table "links", force: true do |t|
-    t.string   "type"
+    t.string   "link_type"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "locations", force: true do |t|
-    t.boolean  "hq"
-    t.string   "name"
-    t.string   "country"
-    t.string   "state"
-    t.string   "address"
-    t.string   "postal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   create_table "news_articles", force: true do |t|
@@ -61,6 +53,8 @@ ActiveRecord::Schema.define(version: 20141108080956) do
     t.string   "publisher"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
+    t.string   "url"
   end
 
   create_table "people", force: true do |t|

@@ -5,9 +5,9 @@
 2.1. テーブルの整理
 	* Poeple ControllerとModel、関連するpeopleの記述を削除
 	* commentsのコントローラー、モデル、ビュー作成
-	・linksのコントローラー、モデル、ビュー作成
-	・locationsのコントローラー、モデル、ビュー作成
-	・news_articlesのコントローラー、モデル、ビュー作成
+	* linksのコントローラー、モデル、ビュー作成
+	* LocationテーブルをつぶしてCompanyテーブルにマージ
+	* news_articlesのコントローラー、モデル、ビュー作成
 	・companies/new、editでcomments, links, locations, news articlesの入力・修正も可能にする
 2.2. タグ機能の装着
 	* 既存タグはドロップダウンかチェックボックスから入力できる(→諦めた)
@@ -16,6 +16,8 @@
 	* tagコントローラーのshowアクションとdestroyアクションの修正
 2.3. 検索機能の装着
 2.4. ユーザー権限の設定
+2.5. レイアウトの整理
+2.6. CompanyのサブテーブルpagenateをAJAX対応
 
 3. ファイルサーバ
 3.1. ファイルサーバーgemの検索

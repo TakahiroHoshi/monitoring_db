@@ -1,0 +1,20 @@
+<% provide(:title, 'All Articles') %>
+<% if signed_in? %>
+	<h1>All News Articles</h1>
+
+	<%= will_paginate %>
+
+	<ul class="newsarticles">
+		<% @news_articles.each do |article| %>
+	 		<li>
+				<%= link_to Company.find_by_id(article.company_id).name, Company.find_by_id(article.company_id) %> | [<%= article.date %>] <%= link_to article.title, article.url %> | 
+				<%= link_to "Edit", edit_news_article_path(article) %> | 
+				<%= link_to "Delete", article, method: :delete, data: {confirm: "You sure?"} %>
+			</li>
+		<% end %>
+	</ul>
+	<%= will_paginate %>
+
+<% else %>
+Not allowed.
+<% end %>

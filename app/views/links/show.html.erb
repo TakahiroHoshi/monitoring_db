@@ -1,0 +1,6 @@
+<% provide(:title) %>
+<div class="row">
+    <%= link_to Company.find_by_id(@link.company_id).name, company_path(id: @link.company_id) %><br />
+    <%= @link.link_type %><br />
+    <%= link_to @link.url, @link.url %>
+</div>

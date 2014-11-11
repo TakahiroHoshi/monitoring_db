@@ -24,7 +24,9 @@ class CompaniesController < ApplicationController
   def show
   	@company = Company.find(params[:id])
     @products = @company.products.paginate(page: params[:page])
-    @comments = @company.comments
+    @comments = @company.comments(page: params[:page])
+    @links = @company.links(page: params[:page])
+    @news_articles = @company.news_articles(page: params[:page])
   end
 
 	def search
@@ -53,7 +55,7 @@ class CompaniesController < ApplicationController
 
   private
     def company_params
-      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :category_list)
+      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :category_list, :hq_country, :multinational)
     end
 
   	def observer_user
