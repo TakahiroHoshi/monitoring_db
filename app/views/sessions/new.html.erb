@@ -6,15 +6,15 @@
     This is a monitoring DB for RJB.
   </h2>
   <div class="row">
-  	<div class="span6 offset3">
+  	<div class="span6 offset2">
   		<%= form_for(:session, url: sessions_path) do |f| %>
 
   			<%= f.label :email, "Eメール" %>
   			<%= f.text_field :email %> 
-
-  			<%= f.label :password, "パスワード" %>
+  			
+        <%= f.label :password, "パスワード" %>
   			<%= f.password_field :password %>
-<br>
+        <br />
   			<%= f.submit "Login", class: "btn btn-large btn-primary" %>
 
   		<% end %>

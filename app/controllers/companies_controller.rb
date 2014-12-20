@@ -3,12 +3,17 @@ class CompaniesController < ApplicationController
 	#before_action :observer_user, only: [:index, :search, :show]
 
   def index
-  	@companies = Company.paginate(page: params[:page])
+  	#@companies = Company.paginate(page: params[:page])
+    @companies = Company.search(params[:search])
   end
 
   def new
   	@company = Company.new
     @category_list = Company.category_counts.order("taggings_count DESC")
+    @company.products.build
+    @company.comments.build
+    @company.links.build
+    @company.news_articles.build
   end
 
   def create
@@ -55,7 +60,11 @@ class CompaniesController < ApplicationController
 
   private
     def company_params
-      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :category_list, :hq_country, :multinational)
+      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :category_list, :hq_country, :multinational, 
+        products_attributes: [:name, :description, :type, :released_date], 
+        comments_attributes: [:comment], 
+        links_attributes: [:link_type, :url,], 
+        news_articles_attributes: [:date, :title, :content, :comment, :publisher, :url])
     end
 
   	def observer_user

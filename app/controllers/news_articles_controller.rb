@@ -6,14 +6,14 @@ class NewsArticlesController < ApplicationController
   end
 
   def new
-  	@news_article = NewsArticle.new
+  	@news_article = NewsArticle.new(company_id: params[:company_id])
   end
 
   def create
   	@news_article = NewsArticle.new(news_article_params)
 		if @news_article.save
 			flash[:success] = "News successfully posted."
-			redirect_to @news_article
+			redirect_to company_path(@news_article.company_id)
 		else
 			render 'new'
 		end
@@ -38,9 +38,10 @@ class NewsArticlesController < ApplicationController
   end
 
   def destroy
+    company_id = NewsArticle.find(params[:id]).company_id
   	NewsArticle.find(params[:id]).destroy
     flash[:success] = "Link deleted."
-    redirect_to news_articles_path
+    redirect_to company_path(company_id)
   end
 
   private

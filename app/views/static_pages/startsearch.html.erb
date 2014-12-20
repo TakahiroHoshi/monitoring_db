@@ -1,0 +1,16 @@
+<% provide(:title, 'Search') %>
+<% if signed_in? %>
+<div class="center hero-unit">
+	<h1>Start your search here</h1>
+	<br />
+		<%= form_tag companies_path, :method => 'get' do %>	
+			<%= text_field_tag :search, params[:search] %>
+			<%= submit_tag "Search", name: nil %>
+		<% end %>
+  	Create new <%= link_to "Company", new_company_path %> or Product	
+</div>
+
+
+<% else %>
+Not allowed.
+<% end %>

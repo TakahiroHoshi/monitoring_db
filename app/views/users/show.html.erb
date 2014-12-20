@@ -1,10 +1,27 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-	<aside class="span4">
+	<div class="span4">
 		<section>
 			<h1>
 				<%= @user.name %>
 			</h1>
 		</section>
-	</aside>
+		<div>
+			<h4>Eメール</h4>
+			<%= @user.email %>
+			<h4>社員番号</h4>
+			<%= @user.id_num %>
+			<h4>所属組織</h4>
+			<%= @user.organization %>
+			<h4>ユーザー権限</h4>
+			<% if @user.admin? %>
+			<%= "admin" %>
+			<% elsif @user.regular? %>
+			<%= "ユーザー" %>
+			<% elsif @user.observer? %>
+			<%= "オブザーバー" %>
+			<% else %>
+			<% end %>
+		</div>
+	</div>
 </div>

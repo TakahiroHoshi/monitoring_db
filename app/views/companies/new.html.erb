@@ -6,6 +6,8 @@
 		<%= form_for(@company) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
+			<h3>Company Info</h3>
+
 			<%= f.label :name, "Company Name" %>
 			<%= f.text_field :name %>
 
@@ -35,6 +37,61 @@
 
 			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
 
+
+			<h3>Product</h3>
+			<%= f.fields_for :products do |p| %>
+
+				<%= p.label :name, "Product Name" %>
+				<%= p.text_field :name %>
+
+				<%= p.label :description, "Description" %>
+				<%= p.text_area :description %>
+
+				<%= p.label :type, "Product Type" %>
+				<%= p.text_field :type %>
+
+				<%= p.label :released_date, "Released Date" %>
+				<%= p.date_field :released_date %>
+			<% end %>
+
+			<h3>Comments</h3>
+			<%= f.fields_for :comments do |c| %>
+
+				<%= c.label :comment, "Comment" %>
+				<%= c.text_area :comment %>
+			<% end %>
+
+			<h3>Links</h3>
+			<%= f.fields_for :links do |l| %>
+				<%= l.label :link_type, "Link Type" %>
+				<%= l.text_field :link_type %>
+
+				<%= l.label :url, "URL" %>
+				<%= l.text_field :url %>
+			<% end %>
+
+			<h3>News Articles</h3>
+			<%= f.fields_for :news_articles do |n| %>
+				<%= n.label :date, "Article Date" %>
+				<%= n.date_field :date %>
+
+				<%= n.label :title, "Title" %>
+				<%= n.text_field :title %>
+
+				<%= n.label :url, "URL" %>
+				<%= n.text_field :url %>
+
+				<%= n.label :content, "Content" %>
+				<%= n.text_area :content %>
+
+				<%= n.label :comment, "Comment" %>
+				<%= n.text_area :comment %>
+
+				<%= n.label :publisher, "Publisher" %>
+				<%= n.text_field :publisher %>
+			<% end %>
+
+			<br />
 			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 			
 		<% end %>

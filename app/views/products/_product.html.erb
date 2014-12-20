@@ -1,4 +1,6 @@
-<h4>Produc Name</h4>
+<h4>Company</h4>
+<%= link_to Company.find_by_id(@product.company_id).name, company_path(id: @product.company_id) %>
+<h4>Product Name</h4>
 <%= product.name %>
 <h4>Description</h4>
 <%= product.description %>

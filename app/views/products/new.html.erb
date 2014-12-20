@@ -15,11 +15,11 @@
 			<%= f.label :type, "Product Type" %>
 			<%= f.text_field :type %>
 
+
 			<%= f.label :released_date, "Released Date" %>
 			<%= f.date_field :released_date %>
 
-			<%= f.label :company_id, "Company ID" %>
-			<%= f.text_field :company_id %>
+			<%= f.hidden_field :company_id %>
 
 			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 			

@@ -1,5 +1,7 @@
 <% provide(:title) %>
 <div class="row">
+	<h4>Company</h4>
+	<%= link_to Company.find_by_id(@comment.company_id).name, company_path(id: @comment.company_id) %>
+	<h4>Comment</h4>
     <%= @comment.comment %><br />
-    <%= link_to Company.find_by_id(@comment.company_id).name, company_path(id: @comment.company_id) %>
 </div>

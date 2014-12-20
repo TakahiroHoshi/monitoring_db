@@ -8,16 +8,47 @@
 	* linksのコントローラー、モデル、ビュー作成
 	* LocationテーブルをつぶしてCompanyテーブルにマージ
 	* news_articlesのコントローラー、モデル、ビュー作成
-	・companies/new、editでcomments, links, locations, news articlesの入力・修正も可能にする
+	* companies/new、editでcomments, links, locations, news articlesの入力を可能にする
+	* Companies.showの各項目にeditボタンとDeleteボタンを作成する
+	* 各テーブルのshowからcompaniesへリンク
 2.2. タグ機能の装着
 	* 既存タグはドロップダウンかチェックボックスから入力できる(→諦めた)
 	* 新規タグは入力できる(→テキストフィールドのみにした)
 	* newとeditのページにリンクを張り、タグリストを別ページに出す
 	* tagコントローラーのshowアクションとdestroyアクションの修正
 2.3. 検索機能の装着
-2.4. ユーザー権限の設定
+	* ベスプラの検索
+	* 検索機能の実装
+	・全てのカラムで検索できるように検索機能を改修(ややこしいので一旦後回し)
+	・paginationの復活(ややこしいので一旦後回し)
+	・タグをプロダクトに付け替える
+	・タグをクリックすると、そのタグを持つCompany-Productを一覧表示
+	・CompanyにProductが持つタグを一覧化
+2.4. ユーザー権限の設定(cancancanで実装しよう)
+	* Userのビューに変更機能を追加
+	* admin/regular/observer権限を作成
+	* adminはユーザーの追加削除権限を付与
+	* userは普通の読み書き権限
+	* サインアップページをadminにだけアクセス許可
+	* Users#indexをadminにだけアクセス許可
 2.5. レイアウトの整理
+	* サーチページを作成し、すべてのユーザーがログイン後にリダイレクト
+	* 管理者用のヘッダーをManage Usersにして、ユーザーの検索をできるようにする
+	* 管理者用にヘッダーにManage Tablesを作り、indexにアクセスできるようにする
+	* 各Table(Companyだけ？)にnewへのリンクを追加
+	* locationsのControllerもろもろを削除
+	* Companyの必要なサブテーブルにnewアクションへのリンクを追加し、Company_idを自動的に挿入(→スタックしたのでstackoverflowへ投稿してみよう)
+	* CompanyのサブテーブルのeditページにはCompany_idを表示させない
+	* サブテーブルのDeleteのあとに元のCompanyに戻るようにしたい
+	・ タグをクリックした時に、そのタグのCompanyを一覧表示
 2.6. CompanyのサブテーブルpagenateをAJAX対応
+	・サブテーブルのPagenateを整理・実装
+	・AJAX対応
+2.7. テストの実装
+	・Cabyparaの復習
+	・テストシナリオ書き出し
+	・テストコード作成
+	・コード修正作業
 
 3. ファイルサーバ
 3.1. ファイルサーバーgemの検索

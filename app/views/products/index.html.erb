@@ -2,7 +2,12 @@
 <% if signed_in? %>
 	<h1>All products</h1>
 
-	<%= will_paginate %>
+	<%= form_tag products_path, :method => 'get' do %>	
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", name: nil %>
+	<% end %>
+
+	<%#= will_paginate %>
 
 	<ul class="products">
 		<% @products.each do |product| %>
@@ -13,7 +18,7 @@
 			</li>
 		<% end %>
 	</ul>
-	<%= will_paginate %>
+	<%#= will_paginate %>
 
 <% else %>
 Not allowed.

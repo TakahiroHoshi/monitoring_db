@@ -3,18 +3,18 @@ class ProductsController < ApplicationController
 	#before_action :observer_user, only: [:index, :search, :show]
 
   def index
-  	@products = Product.all.paginate(page: params[:page])
+  	@products = Product.search(params[:search])
   end
 
   def new
-  	@product = Product.new
+    @product = Product.new(company_id: params[:company_id])
   end
 
   def create
   	@product = Product.new(product_params)
 		if @product.save
 			flash[:success] = "Product successfully created."
-			redirect_to @product
+			redirect_to company_path(@product.company_id)
 		else
 			render 'new'
 		end
@@ -39,9 +39,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-  	Product.find(params[:id]).destroy
+    company_id = Product.find(params[:id]).company_id
+    Product.find(params[:id]).destroy
     flash[:success] = "Product deleted."
-    redirect_to product_url
+    redirect_to company_path(company_id)
+  end
+
+  def search
   end
 
   private

@@ -6,14 +6,14 @@ class CommentsController < ApplicationController
   end
 
   def new
-  	@comment = Comment.new
+  	@comment = Comment.new(company_id: params[:company_id])
   end
 
   def create
   	@comment = Comment.new(comment_params)
 		if @comment.save
 			flash[:success] = "Comment successfully posted."
-			redirect_to @comment
+			redirect_to company_path(@comment.company_id)
 		else
 			render 'new'
 		end
@@ -38,9 +38,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    company_id = Comment.find(params[:id]).company_id
   	Comment.find(params[:id]).destroy
     flash[:success] = "Comment deleted."
-    redirect_to comments_path
+    redirect_to company_path(company_id)
   end
 
   private

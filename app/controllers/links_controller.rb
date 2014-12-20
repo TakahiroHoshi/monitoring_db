@@ -6,14 +6,14 @@ class LinksController < ApplicationController
   end
 
   def new
-  	@link = Link.new
+  	@link = Link.new(company_id: params[:company_id])
   end
 
   def create
   	@link = Link.new(link_params)
 		if @link.save
 			flash[:success] = "link successfully posted."
-			redirect_to @link
+			redirect_to company_path(@link.company_id)
 		else
 			render 'new'
 		end
@@ -38,9 +38,10 @@ class LinksController < ApplicationController
   end
 
   def destroy
+    company_id = Link.find(params[:id]).company_id
   	Link.find(params[:id]).destroy
     flash[:success] = "Link deleted."
-    redirect_to links_path
+    redirect_to company_path(company_id)
   end
 
   private

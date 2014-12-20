@@ -18,6 +18,10 @@
 			<%= f.label :organization, "所属組織" %>
 			<%= f.text_field :organization %>
 
+			<p><%= f.check_box :admin %> admin</p>
+			<p><%= f.check_box :regular, {:checked => true} %> ユーザー</p>
+			<p><%= f.check_box :observer %> オブザーバー</p>
+
 			<%= f.label :password, "パスワード" %>
 			<%= f.password_field :password %>
 
