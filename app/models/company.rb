@@ -1,9 +1,9 @@
 class Company < ActiveRecord::Base
 	validates :name, presence:true
 
-  acts_as_taggable
-  acts_as_taggable_on :categories
-  scope :by_added_date, order("created_at DESC")
+#  acts_as_taggable
+#  acts_as_taggable_on :categories
+#  scope :by_added_date, order("created_at DESC")
 
   has_many :products
   has_many :comments

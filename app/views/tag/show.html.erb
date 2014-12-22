@@ -6,8 +6,14 @@
 		</h1>
 	</section>
 	<section class="span4">
-		<% @tagged_company.each do |company| %>
-			<%= link_to company.name, company_path(id: company.id) %><br />
+		<% @tagged_product.each do |product| %>
+			<%= link_to product.name, product_path(id: product.id) %><br />
+		<% end %>
+	</section>
+	<section class="span4">
+		<% @tagged_product.each do |product| %>
+			<% @company = Company.find(product.company_id) %>
+			<%= link_to @company.name, company_path(@company) %>
 		<% end %>
 	</section>
 

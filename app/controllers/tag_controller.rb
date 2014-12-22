@@ -9,7 +9,7 @@ class TagController < ApplicationController
 
 	def show
 		@tag = Tag.find(params[:id])
-		@tagged_company = Company.tagged_with(@tag.name)
+		@tagged_product = Product.tagged_with(@tag.name)
 	end
 
 	def create

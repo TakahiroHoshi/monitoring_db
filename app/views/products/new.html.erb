@@ -19,6 +19,10 @@
 			<%= f.label :released_date, "Released Date" %>
 			<%= f.date_field :released_date %>
 
+			<%= f.label :tag_list, "Tag" %>
+			<%= f.text_field :tag_list %>
+			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
+
 			<%= f.hidden_field :company_id %>
 
 			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>

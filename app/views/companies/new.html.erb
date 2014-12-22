@@ -32,10 +32,10 @@
 			<%= f.label :stage, "Investment Round" %>
 			<%= f.text_field :stage %>
 
-			<%= f.label :category_list, "Category List" %>
-			<%= f.text_field :category_list %>
+			<%#= f.label :category_list, "Category List" %>
+			<%#= f.text_field :category_list %>
 
-			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
+			<%#br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
 
 
 			<h3>Product</h3>
@@ -52,6 +52,12 @@
 
 				<%= p.label :released_date, "Released Date" %>
 				<%= p.date_field :released_date %>
+
+				<%= p.label :tag_list, "Tag" %>
+				<%= p.text_field :tag_list %>
+
+				<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
+
 			<% end %>
 
 			<h3>Comments</h3>

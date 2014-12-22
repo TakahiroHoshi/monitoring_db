@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
 
   def new
   	@company = Company.new
-    @category_list = Company.category_counts.order("taggings_count DESC")
+    @category_list = Product.category_counts.order("taggings_count DESC")
     @company.products.build
     @company.comments.build
     @company.links.build
@@ -60,8 +60,8 @@ class CompaniesController < ApplicationController
 
   private
     def company_params
-      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :category_list, :hq_country, :multinational, 
-        products_attributes: [:name, :description, :type, :released_date], 
+      params.require(:company).permit(:name, :logo, :description, :founded_date, :closed_date, :stage, :hq_country, :multinational, 
+        products_attributes: [:name, :description, :type, :released_date, :tag_list], 
         comments_attributes: [:comment], 
         links_attributes: [:link_type, :url,], 
         news_articles_attributes: [:date, :title, :content, :comment, :publisher, :url])

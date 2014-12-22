@@ -20,10 +20,9 @@
 	* ベスプラの検索
 	* 検索機能の実装
 	・全てのカラムで検索できるように検索機能を改修(ややこしいので一旦後回し)
-	・paginationの復活(ややこしいので一旦後回し)
-	・タグをプロダクトに付け替える
-	・タグをクリックすると、そのタグを持つCompany-Productを一覧表示
-	・CompanyにProductが持つタグを一覧化
+	* タグをプロダクトに付け替える
+	* タグをクリックすると、そのタグを持つCompany-Productを一覧表示
+	* CompanyにProductが持つタグを一覧化
 2.4. ユーザー権限の設定(cancancanで実装しよう)
 	* Userのビューに変更機能を追加
 	* admin/regular/observer権限を作成
@@ -40,7 +39,11 @@
 	* Companyの必要なサブテーブルにnewアクションへのリンクを追加し、Company_idを自動的に挿入(→スタックしたのでstackoverflowへ投稿してみよう)
 	* CompanyのサブテーブルのeditページにはCompany_idを表示させない
 	* サブテーブルのDeleteのあとに元のCompanyに戻るようにしたい
-	・ タグをクリックした時に、そのタグのCompanyを一覧表示
+	・ タグをクリックした時に、そのタグを持つProduct(とそのProductを持つCompany)とCompanyを一覧表示させる
+	・ロゴ画像を自動的にリサイズする機能の実装
+	・Companyのshowをカセット形に表示を変更する
+	・Companyのindexでpaginationを適用する
+	・
 2.6. CompanyのサブテーブルpagenateをAJAX対応
 	・サブテーブルのPagenateを整理・実装
 	・AJAX対応

@@ -8,3 +8,7 @@
 <%= product.type %>
 <h4>Released Date</h4>
 <%= product.released_date %>
+<h4>Tag</h4>
+<% @product.tag_list.each do |tag| %>
+	<%= link_to "#{tag}", "http://#{tag}" %>
+<% end %>

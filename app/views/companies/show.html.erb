@@ -44,6 +44,11 @@
 					<%= product.type %>
 					<h4>Released Date</h4>
 					<%= product.released_date %>
+					<h4>Tag</h4>
+					<% product.tag_list.each do |tag| %>
+						<%= link_to "#{tag}", "http://#{tag}" %>
+					<% end %>
+
 					<br /><br />
 					<%= link_to "Edit", edit_product_path(product) %> /
 					<%= link_to "Delete", product, method: :delete, data: {confirm: "You sure?"} %>
