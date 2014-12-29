@@ -1,5 +1,6 @@
 class DropTableFromLocations < ActiveRecord::Migration
   def change
-  	drop_table :locations
+# herokuのマイグレーションが通らないので一旦コメントアウト
+#  	drop_table :locations
   end
 end
