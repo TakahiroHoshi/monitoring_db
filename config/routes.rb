@@ -1,5 +1,4 @@
 MonitoringDb::Application.routes.draw do
-  #get "companies/new"
   resources :users
   resources :sessions, only: [:new, :create, :destroy] 
   resources :companies
@@ -8,7 +7,6 @@ MonitoringDb::Application.routes.draw do
   resources :comments
   resources :links
   resources :news_articles
-  #get "users/new"
   root 'sessions#new'
   match 'signout', to: 'sessions#destroy', via: 'delete'
   match '/help', to: 'static_pages#help', via: 'get'

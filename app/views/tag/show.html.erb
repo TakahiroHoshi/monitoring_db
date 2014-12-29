@@ -1,19 +1,28 @@
 <% provide(:title, @tag.name) %>
 <div class="row">
-	<section class="span4">
+	<section class="span12">
 		<h1>
 			<%= @tag.name %>
 		</h1>
 	</section>
-	<section class="span4">
-		<% @tagged_product.each do |product| %>
-			<%= link_to product.name, product_path(id: product.id) %><br />
-		<% end %>
-	</section>
-	<section class="span4">
+	<section class="span6">
 		<% @tagged_product.each do |product| %>
 			<% @company = Company.find(product.company_id) %>
-			<%= link_to @company.name, company_path(@company) %>
+			<ul>
+				<li>
+				<%= link_to product.name, product_path(id: product.id) %> <%= link_to "(#{@company.name})", company_path(@company) %>
+				</li>
+			</ul>
+		<% end %>
+	</section>
+	<section class="span6">
+		<% @tagged_product.each do |product| %>
+			<% @company = Company.find(product.company_id) %>
+			<ul>
+				<li>
+				<%= link_to @company.name, company_path(@company) %>
+				</li>
+			</ul>
 		<% end %>
 	</section>
 

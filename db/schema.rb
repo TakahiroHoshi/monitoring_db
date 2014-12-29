@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205130506) do
+ActiveRecord::Schema.define(version: 20141223065332) do
 
   create_table "comments", force: true do |t|
     t.text     "comment"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20141205130506) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
-    t.binary   "logo"
     t.text     "description"
     t.date     "founded_date"
     t.date     "closed_date"
@@ -33,6 +32,10 @@ ActiveRecord::Schema.define(version: 20141205130506) do
     t.datetime "updated_at"
     t.string   "hq_country"
     t.string   "multinational"
+    t.string   "logo_image_file_name"
+    t.string   "logo_image_content_type"
+    t.integer  "logo_image_file_size"
+    t.datetime "logo_image_updated_at"
   end
 
   add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"

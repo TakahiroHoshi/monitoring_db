@@ -9,8 +9,8 @@
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 
-			<%= f.label :logo %>
-			<%= f.file_field :logo, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
+			<%= f.label :logo_image %>
+			<%= f.file_field :logo_image, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
 			
 			<%= f.label :hq_country %>
 			<%= f.text_field :hq_country %>
@@ -29,18 +29,6 @@
 
 			<%= f.label :stage %>
 			<%= f.text_field :stage %>
-
-			<%= f.label :category_list %>
-			<%= f.text_field :category_list %>
-
-<!--  チェックボックスやドロップダウンを実装しようと思ったけど出来なかった残骸
-			<% @category_list.each do |tag| %>
-				<%= f.check_box(:category_list, {}, true, false) %>
-				<%= tag %><br />
-			<% end %>
-			<%= f.collection_select(:category_list, @category_list, :id, :name, :prompt => "カテゴリを選択") %>
--->
-			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
 
 			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
 			

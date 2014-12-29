@@ -1,4 +1,8 @@
-<%= company.logo %>
+<% if @company.logo_image.present? %>
+	<%= image_tag @company.logo_image.url(:thumb) %>
+<% else %>
+	nil
+<% end %>
 <h4>Description</h4>
 <%= company.description %>
 <h4>Founded Date</h4>
@@ -9,7 +13,7 @@
 <%= company.stage %>
 <h4>Tags</h4>
 <% @company.products.each do |product| %>
-	<% product.tag_list.each do |tag| %>
-		<%= link_to "#{tag}", "http://#{tag}" %>
+	<% product.tags.each do |tag| %>
+		<%= link_to tag, tag_path(tag) %>
 	<% end %>
 <% end %>

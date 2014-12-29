@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'acts-as-taggable-on', '3.4.2'
 gem 'cancancan', '~> 1.9.2'
+gem "paperclip", '~> 4.2'
 
 group :development, :test do
 	gem 'sqlite3'

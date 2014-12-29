@@ -39,11 +39,10 @@
 	* Companyの必要なサブテーブルにnewアクションへのリンクを追加し、Company_idを自動的に挿入(→スタックしたのでstackoverflowへ投稿してみよう)
 	* CompanyのサブテーブルのeditページにはCompany_idを表示させない
 	* サブテーブルのDeleteのあとに元のCompanyに戻るようにしたい
-	・ タグをクリックした時に、そのタグを持つProduct(とそのProductを持つCompany)とCompanyを一覧表示させる
-	・ロゴ画像を自動的にリサイズする機能の実装
+	* タグをクリックした時に、そのタグを持つProduct(とそのProductを持つCompany)とCompanyを一覧表示させる
+	* ロゴ画像を自動的にリサイズする機能の実装(originalは表示できるけどリサイズした画像が表示されない！)
 	・Companyのshowをカセット形に表示を変更する
 	・Companyのindexでpaginationを適用する
-	・
 2.6. CompanyのサブテーブルpagenateをAJAX対応
 	・サブテーブルのPagenateを整理・実装
 	・AJAX対応
