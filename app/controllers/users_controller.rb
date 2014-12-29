@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-#herokuのadminユーザー作成のため一旦:newを:admin_userから削除
-  before_action :admin_user, only: [:index, :destroy]
+  before_action :admin_user, only: [:index, :destroy, :new]
   before_action :correct_user, only: [:edit, :update]
 
 	def index
