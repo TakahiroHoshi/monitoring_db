@@ -1,55 +1,50 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-	<div class="navbar-inner">
-		<div class="container">
-			<nav>
-				<%# when signed in %>
+<header class="row">
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+		<div class="col-md-offset-2 col-md-8">
 
-					<% if signed_in? %>
-					<div>
-						<ul class="nav pull-left">
-							<% if current_user.admin? %>
-								<li><%= link_to "Manage Users", users_path %></li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Tables</a>
-									<ul class="dropdown-menu">
-										<li><%= link_to "Company", companies_path %></li>
-										<li><%= link_to "Products", products_path %></li>
-										<li><%= link_to "Comments", comments_path %></li>
-										<li><%= link_to "Links", links_path %></li>
-										
-										<li><%= link_to "NewsArticles", news_articles_path %></li>
-										<li><%= link_to "Tags", tag_index_path %></li>
-									</ul>
-								</li>
-								<li><%= link_to "go to Search", startsearch_path %></li>
-							<% else %>
-								<%# <li><%= link_to "Company", companies_path %></li> %>
-							<% end %>
-						</ul>
-					</div>
-					<div>
-						<ul class="nav pull-right">
-							<li><%= link_to "Help", help_path %></li>
-							<li id="fat-menu" class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
-								<ul class="dropdown-menu">
-									<li><%= link_to "Show Profile", user_path(current_user) %></li>
-									<li><%= link_to "Update Profile", edit_user_path(current_user) %></li>
-									<li><%= link_to "Logout", signout_path, method: "delete"%></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+		<%# when signed in %>
+			<% if signed_in? %>
+				<ul class="nav navbar-nav navbar-header">
 
-				<%# when signed out %>
-				<% else %>
-				<div>
-					<ul  class="nav pull-right">
-						<li><%= link_to "Help", help_path %></li>
-					</ul>
-				</div>
-				<% end %>
-			</nav>
+					<%# when current user is admin, who all left-sideed menus %>
+					<% if current_user.admin? %>
+						<li><%= link_to "Manage Users", users_path %></li>
+						<li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Tables<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><%= link_to "Company", companies_path %></li>
+								<li><%= link_to "Products", products_path %></li>
+								<li><%= link_to "Comments", comments_path %></li>
+								<li><%= link_to "Links", links_path %></li>
+								<li><%= link_to "NewsArticles", news_articles_path %></li>
+								<li><%= link_to "Tags", tag_index_path %></li>
+							</ul>
+						</li>
+						<li><%= link_to "go to Search", startsearch_path %></li>
+
+					<%# when current user is not admin show only the "go to search" menu %>
+					<% else %>
+						<li><%= link_to "go to Search", startsearch_path %></li>
+					<% end %>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to "Help", help_path %></li>
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Show Profile", user_path(current_user) %></li>
+							<li><%= link_to "Update Profile", edit_user_path(current_user) %></li>
+							<li><%= link_to "Logout", signout_path, method: "delete"%></li>
+						</ul>
+					</li>
+				</ul>
+
+			<%# when signed out %>
+			<% else %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to "Help", help_path %></li>
+				</ul>
+			<% end %>
 		</div>
-	</div>
+	</nav>
 </header>

@@ -1,19 +1,78 @@
-<% if @company.logo_image.present? %>
-	<%= image_tag @company.logo_image.url(:thumb) %>
-<% else %>
-	nil
-<% end %>
-<h4>Description</h4>
-<%= company.description %>
-<h4>Founded Date</h4>
-<%= company.founded_date %>
-<h4>Closed Date</h4>
-<%= company.closed_date %>
-<h4>Stage</h4>
-<%= company.stage %>
-<h4>Tags</h4>
-<% @company.products.each do |product| %>
-	<% product.tags.each do |tag| %>
-		<%= link_to tag, tag_path(tag) %>
-	<% end %>
-<% end %>
+<div class="row">
+
+	<%# トップ社名 %>
+	<div class="col-md-offset-2 col-md-8">
+		<h1>
+			<%= @company.name %>
+		<% if @company.logo_image.present? %>
+		<%= image_tag @company.logo_image.url(:thumb) %>
+		<% else %>
+		<% end %>
+		</h1>
+	</div>
+
+	<%# 左側 %>
+	<div class="col-md-offset-2 col-md-4">
+		<h4>HQ Country</h4>
+		<%= @company.hq_country %>
+		<h4>Multinational Capacity</h4>
+		<%= @company.multinational %>
+		<h4>Links</h4>
+			<ul>
+				<% @links.each do |link| %>
+				<li><%= link_to link.link_type, link.url %>&nbsp;&nbsp;&nbsp;&nbsp;
+					<%= link_to "Edit", edit_link_path(link) %> /
+					<%= link_to "Delete", link, method: :delete, data: {confirm: "You sure?"} %>
+				</li>
+				<% end %>
+			</ul>
+			<%= link_to "Add new link", new_link_path(company_id: @company) %>
+		<div class="timestamp">
+			<%= link_to "Edit company info", edit_company_path %> /
+			<%= link_to "Delete", @company, method: :delete, data: {confirm: "You sure?"} %>
+			<br />
+			<small>Created: <%= @company.created_at %><br />
+			Updated: <%= @company.updated_at %></small>
+		</div>
+
+	</div>
+
+	<%# 右側 %>
+	<div class="col-md-4">
+		<h4>Founded Date</h4>
+			<% if @company.founded_date.present? %>
+			<%= company.founded_date %>
+			<% else %>
+			<br />
+			<% end %>
+		<h4>Closed Date</h4>
+			<% if @company.closed_date.present? %>
+			<%= company.closed_date %>
+			<% else %>
+			<br />
+			<% end %>
+		<h4>Funding Stage</h4>
+			<% if @company.stage.present? %>
+			<%= company.stage %>
+			<% else %>
+			<br />
+			<% end %>
+		<h4>Tags</h4>
+			<% @company.products.each do |product| %>
+				<% product.tags.each do |tag| %>
+					<%= link_to tag, tag_path(tag) %> /
+				<% end %>
+			<% end %>
+	</div>
+</div>
+
+<%# 中央下のDescription欄 %>
+<div class="row">
+	<div class="col-md-offset-2 col-md-8">
+		<div class="segment">
+			<h4>Description</h4>
+			<%= company.description %>
+		</div>
+	</div>
+</div>
+

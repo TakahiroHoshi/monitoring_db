@@ -1,64 +1,110 @@
 <% provide(:title, 'New company') %>
-<h1>Add a new company</h1>
-
 <div class="row">
-	<div class="span6 offset3">
+	<div class="col-md-8	col-md-offset-2">
+		<h1>Add a new company</h1>
+
 		<%= form_for(@company) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
 			<h3>Company Info</h3>
+				<div class="form-horizontal">
+					<div class="form-group">
+						<%= f.label :logo_image, "Logo Image", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.file_field :logo_image, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
+						</div>
+					</div>
+					<div class="form-group">
+						<%= f.label :name, "Company Name", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.text_field :name, class: "form-control" %>							
+						</div>
+					</div>
 
-			<%= f.label :name, "Company Name" %>
-			<%= f.text_field :name %>
+					<div class="form-group">
+						<%= f.label :hq_country, "HQ Country", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.text_field :hq_country, class: "form-control" %>
+						</div>
+					</div>
 
-			<%= f.label :logo_image, "Logo Image" %>
-			<%= f.file_field :logo_image, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
+					<div class="form-group">
+						<%= f.label :multinational, "Multinational Capacity", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.text_field :multinational, class: "form-control" %>
+						</div>
+					</div>
 
-			<%= f.label :hq_country, "HQ Country" %>
-			<%= f.text_field :hq_country %>
+					<div class="form-group">
+						<%= f.label :description, "Description", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.text_area :description, class: "form-control" %>
+						</div>
+					</div>
 
-			<%= f.label :multinational, "Multinational Capacity" %>
-			<%= f.text_field :multinational %>
+					<div class="form-group">
+						<%= f.label :founded_date, "Founded on", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.date_field :founded_date, class: "form-control" %>
+						</div>
+					</div>
 
-			<%= f.label :description, "Description" %>
-			<%= f.text_area :description %>
+					<div class="form-group">
+						<%= f.label :closed_date, "Closed on", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.date_field :closed_date, class: "form-control" %>
+						</div>
+					</div>
 
-			<%= f.label :founded_date, "Founded on" %>
-			<%= f.date_field :founded_date %>
-
-			<%= f.label :closed_date, "Closed on" %>
-			<%= f.date_field :closed_date %>
-
-			<%= f.label :stage, "Investment Round" %>
-			<%= f.text_field :stage %>
-
-			<%#= f.label :category_list, "Category List" %>
-			<%#= f.text_field :category_list %>
-
-			<%#br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
-
+					<div class="form-group">
+						<%= f.label :stage, "Investment Round", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= f.text_field :stage, class: "form-control" %>
+						</div>
+					</div>
+				</div>
 
 			<h3>Product</h3>
-			<%= f.fields_for :products do |p| %>
+				<div class="form-horizontal">
+					<%= f.fields_for :products do |p| %>
+					<div class="form-group">
+					<%= p.label :name, "Product Name", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= p.text_field :name %>
+						</div>
+					</div>
 
-				<%= p.label :name, "Product Name" %>
-				<%= p.text_field :name %>
+					<div class="form-group">
+						<%= p.label :description, "Description", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= p.text_area :description %>
+						</div>
+					</div>
 
-				<%= p.label :description, "Description" %>
-				<%= p.text_area :description %>
+					<div class="form-group">
+						<%= p.label :type, "Product Type", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= p.text_field :type %>
+						</div>
+					</div>
 
-				<%= p.label :type, "Product Type" %>
-				<%= p.text_field :type %>
+					<div class="form-group">
+						<%= p.label :released_date, "Released Date", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= p.date_field :released_date %>
+						</div>
+					</div>
 
-				<%= p.label :released_date, "Released Date" %>
-				<%= p.date_field :released_date %>
+					<div class="form-group">
+						<%= p.label :tag_list, "Tag", class: "col-md-3 control-label" %>
+						<div class="col-md-9">
+							<%= p.text_field :tag_list %>
+						</div>
+					</div>
 
-				<%= p.label :tag_list, "Tag" %>
-				<%= p.text_field :tag_list %>
+						<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
 
-				<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
-
-			<% end %>
+					<% end %>
 
 			<h3>Comments</h3>
 			<%= f.fields_for :comments do |c| %>

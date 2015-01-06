@@ -1,15 +1,23 @@
-<% provide(:title, 'Search') %>
+<% provide(:title, 'Search here') %>
 <% if signed_in? %>
-<div class="center hero-unit">
-	<h1>Start your search here</h1>
-	<br />
-		<%= form_tag companies_path, :method => 'get' do %>	
-			<%= text_field_tag :search, params[:search] %>
-			<%= submit_tag "Search", name: nil %>
-		<% end %>
-  	Create new <%= link_to "Company", new_company_path %> or Product	
-</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="text-center jumbotron">
+			<h1>Start your search here</h1>
+			<br />
 
+      <div class="form-inline">
+        <div class="form-group">
+					<%= form_tag companies_path, :method => 'get' do %>	
+						<%= text_field_tag :search, params[:search], class: "form-control" %>
+						<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+					<% end %>
+			  </div>
+			</div>
+	  	Or, create new <%= link_to "Company", new_company_path %>.	
+		</div>
+	</div>
+</div>
 
 <% else %>
 Not allowed.

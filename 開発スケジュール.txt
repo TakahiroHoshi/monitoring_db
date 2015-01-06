@@ -41,8 +41,11 @@
 	* サブテーブルのDeleteのあとに元のCompanyに戻るようにしたい
 	* タグをクリックした時に、そのタグを持つProduct(とそのProductを持つCompany)とCompanyを一覧表示させる
 	* ロゴ画像を自動的にリサイズする機能の実装(originalは表示できるけどリサイズした画像が表示されない！)
+	・bootstrap3に合わせてcssとerbを大工事しないと。。。
+	・アラートの正常な表示
 	・Companyのshowをカセット形に表示を変更する
 	・Companyのindexでpaginationを適用する
+	・デバッグの枠がないと下のほうが下の帯に沈んでしまうのを修正
 2.6. CompanyのサブテーブルpagenateをAJAX対応
 	・サブテーブルのPagenateを整理・実装
 	・AJAX対応
@@ -55,6 +58,8 @@
 	* herokuに一旦デプロイ
 	・adminユーザーを追加
 	・
+2.9. import機能の実装
+	・CSV形式によるimport機能を実装する
 
 
 3. ファイルサーバ

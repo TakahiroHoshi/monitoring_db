@@ -1,25 +1,39 @@
 <% provide(:title, 'All Companies') %>
-<% if signed_in? %>
-	<h1>All Companies</h1>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<% if signed_in? %>
+			<div class="form-inline">
+				<div class="form-group">
+					<%= form_tag companies_path, :method => 'get' do %>	
+						<%= text_field_tag :search, params[:search], class: "form-control" %>
+						<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+					<% end %>
+				</div>
+			</div>
 
-	<%= form_tag companies_path, :method => 'get' do %>	
-		<%= text_field_tag :search, params[:search] %>
-		<%= submit_tag "Search", name: nil %>
-	<% end %>
+			<h1>All Companies</h1>
+			
+			<% #<%= will_paginate %>
 
-	<% #<%= will_paginate %>
+			<ul class="companies">
+				<% @companies.each do |company| %>
+			 		<% if current_user.admin? %>
+				 		<li>
+							<%= link_to company.name, company %> | 
+							<%= link_to "Edit", edit_company_path(company) %> | 
+							<%= link_to "Delete", company, method: :delete, data: {confirm: "You sure?"} %>
+						</li>
+					<% else %>
+				 		<li>
+							<%= link_to company.name, company %>
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+			<% #<%= will_paginate %>
 
-	<ul class="companies">
-		<% @companies.each do |company| %>
-	 		<li>
-				<%= link_to company.name, company %> | 
-				<%= link_to "Edit", edit_company_path(company) %> | 
-				<%= link_to "Delete", company, method: :delete, data: {confirm: "You sure?"} %>
-			</li>
-		<% end %>
-	</ul>
-	<% #<%= will_paginate %>
-
-<% else %>
-Not allowed.
-<% end %>
+		<% else %>
+		Not allowed.
+		<% end %>		
+	</div>
+</div>

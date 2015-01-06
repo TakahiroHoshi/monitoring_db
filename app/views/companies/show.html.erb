@@ -1,127 +1,124 @@
 <% provide(:title, @company.name) %>
-<div class="row">
-	<div class="segment span6">
-		<h1>
-			<%= @company.name %>
-		</h1>
-		<div class="logo">
-			<% %>
-		</div>
-		<div class="location">
-			<h4>HQ Country</h4>
-			<%= @company.hq_country %>
-			<h4>Multinational Capacity</h4>
-			<%= @company.multinational %>
-		</div>
-		<div>
-			<%= link_to "Edit company info", edit_company_path %> /
-			<%= link_to "Delete", @company, method: :delete, data: {confirm: "You sure?"} %>
-		</div>
-		<div class="timestamp">
-			<small>Created: <%= @company.created_at %><br />
-			Updated: <%= @company.updated_at %></small>
-		</div>
-	</div>
-	<div class="segment span6">
-		<%= render @company %>
-	</div>
+	
+	<%= render @company %>
 
-	<% if @company.products.empty? %>
-		<div class="segment span4">
-			<h2>Products</h2>
-				<%= link_to "Add new product", new_product_path(company_id: @company) %>
-		</div>
-	<% else %>
-		<div class="segment span4">
-			<h2>Products</h2>
-			<% @products.each do |product| %>
-				<div class="segment">
-					<h4>Product Name</h4>
-					<%= product.name %>
-					<h4>Description</h4>
-					<%= product.description %>
-					<h4>Product Type</h4>
-					<%= product.type %>
-					<h4>Released Date</h4>
-					<%= product.released_date %>
-					<h4>Tag</h4>
-					<% product.tags.each do |tag| %>
-						<%= link_to tag, tag_path(tag) %>
-					<% end %>
-
-					<br /><br />
-					<%= link_to "Edit", edit_product_path(product) %> /
-					<%= link_to "Delete", product, method: :delete, data: {confirm: "You sure?"} %>
-				</div>
-			<% end %>
+<% if @company.products.empty? %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Products</h2>
 			<%= link_to "Add new product", new_product_path(company_id: @company) %>
-		</div>
-	<% end %>
+	</div>
+<% else %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Products</h2>
+		<% @products.each do |product| %>
+			<div class="segment">
+				<h3><%= product.name %></h3>
 
-	<% if @company.comments.empty? %>
-		<div class="segment span4">
-			<h2>Comments</h2>
-				<%= link_to "Add new comment", new_comment_path(company_id: @company) %>
-		</div>
-	<% else %>
-		<div class="segment span4">
-			<h2>Comments</h2>
-				<% @comments.each do |com| %>
-					<div class="segment">
-						<%= com.comment %>
-						<br /><br />
+				<h4>Description</h4>
+				<% if product.description.present? %>
+				<%= product.description %>
+				<% else %>
+				<br />
+				<% end %>
+
+				<h4>Product Type</h4>
+				<% if product.type.present? %>
+				<%= product.type %>
+				<% else %>
+				<br />
+				<% end %>
+
+				<h4>Released Date</h4>
+				<% if product.released_date.present? %>
+				<%= product.released_date %>
+				<% else %>
+				<br />
+				<% end %>
+				
+				<h4>Tag</h4>
+				<% product.tags.each do |tag| %>
+					<%= link_to tag, tag_path(tag) %> /
+				<% end %>
+
+				<br /><br />
+				<%= link_to "Edit", edit_product_path(product) %> /
+				<%= link_to "Delete", product, method: :delete, data: {confirm: "You sure?"} %>
+			</div>
+		<% end %>
+		<%= link_to "Add new product", new_product_path(company_id: @company) %>
+	</div>
+<% end %>
+
+<!--
+<% if @company.comments.empty? %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Comments</h2>
+			<%= link_to "Add new comment", new_comment_path(company_id: @company) %>
+	</div>
+<% else %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Comments</h2>
+			<% @comments.each do |com| %>
+				<div class="segment">
+					<%= com.comment %>
+					<br /><br />
+					<div>
 						<%= link_to "Edit", edit_comment_path(com) %> /
 						<%= link_to "Delete", com, method: :delete, data: {confirm: "You sure?"} %>
 					</div>
-				<% end %>
-		<%= link_to "Add new comment", new_comment_path(company_id: @company) %>
-		</div>
-	<% end %>
+				</div>
+			<% end %>
+	<%= link_to "Add new comment", new_comment_path(company_id: @company) %>
+	</div>
+<% end %>
 
-	<% if @company.links.empty? %>
-		<div class="segment span4">
-			<h2>Links</h2>
-			<%= link_to "Add new link", new_link_path(company_id: @company) %>
-		</div>
-	<% else %>
-		<div class="segment span4">
-			<h2>Links</h2>	
-			<ul>
-				<% @links.each do |link| %>
-				<li><%= link_to link.link_type, link.url %>
-					<%= link_to "Edit", edit_link_path(link) %> /
-					<%= link_to "Delete", link, method: :delete, data: {confirm: "You sure?"} %>
-				</li>
-				<% end %>
-			</ul>
-			<%= link_to "Add new link", new_link_path(company_id: @company) %>
-		</div>
-	<% end %>
+<% if @company.links.empty? %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Links</h2>
+		<%= link_to "Add new link", new_link_path(company_id: @company) %>
+	</div>
+<% else %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Links</h2>	
+		<ul>
+			<% @links.each do |link| %>
+			<li><%= link_to link.link_type, link.url %>
+				<%= link_to "Edit", edit_link_path(link) %> /
+				<%= link_to "Delete", link, method: :delete, data: {confirm: "You sure?"} %>
+			</li>
+			<% end %>
+		</ul>
+		<%= link_to "Add new link", new_link_path(company_id: @company) %>
+	</div>
+<% end %>
+-->
 
-	<% if @company.news_articles.empty? %>	
-		<div class="segment span6">
-			<h2>News Articles</h2>
-			<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
-		</div>
-	<% else %>
-		<div class="segment span6">
-			<h2>News Articles</h2>
-			<% @news_articles.each do |article| %>
-				<div class = "segment">
-			    <h4>Title</h4>
-			    [<%= article.date %>] <%= link_to article.title, article.url %><br />
-			    by <%= article.publisher %>
-			    <h4>Article</h4>
-			    <%= article.content%>
-			    <h4>Comment</h4>
-			    <%= article.comment%>
-			    <br /><br />
-					<%= link_to "Edit", edit_news_article_path(article) %> /
-					<%= link_to "Delete", article, method: :delete, data: {confirm: "You sure?"} %>
-			  </div>
-	  	<% end %>
-			<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
-		</div>
-	<% end %>
-
+<% if @company.news_articles.empty? %>	
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>News Articles</h2>
+		<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
+	</div>
+<% else %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>News Articles</h2>
+		<% @news_articles.each do |article| %>
+			<div class = "segment">
+		    <h3><%= link_to article.title, article.url %></h3>
+		    Posted: <%= article.date %>&nbsp;&nbsp;&nbsp;&nbsp;by <%= article.publisher %>
+		    <h4>Article</h4>
+		    <div class="articles-box">
+			    <%= article.content%>	    	
+		    </div>
+		    <h4>Comment</h4>
+		    <div class="articles-box">
+			    <%= article.comment%>		    	
+		    </div>
+		    <br /><br />
+				<%= link_to "Edit", edit_news_article_path(article) %> /
+				<%= link_to "Delete", article, method: :delete, data: {confirm: "You sure?"} %>
+		  </div>
+  	<% end %>
+		<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
+	</div>
+<% end %>
 </div>
