@@ -1,4 +1,6 @@
 <% provide(:title, 'Welcome back') %>
+<div class="h1">
+</div>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="text-center jumbotron">
@@ -13,10 +15,10 @@
         <div class="form-group">
       		<%= form_for(:session, url: sessions_path) do |f| %>
 
-      			<%= f.label :email, "Eメール" %>
+      			<%= f.label :email, "Email" %>
       			<%= f.text_field :email, class: "form-control" %> 
       			
-            <%= f.label :password, "パスワード" %>
+            <%= f.label :password, "Password" %>
       			<%= f.password_field :password, class: "form-control" %>
       			<%= f.submit "Login", class: "btn btn-lg btn-primary" %>
 

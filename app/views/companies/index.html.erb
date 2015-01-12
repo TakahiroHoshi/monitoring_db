@@ -1,39 +1,40 @@
 <% provide(:title, 'All Companies') %>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<% if signed_in? %>
-			<div class="form-inline">
-				<div class="form-group">
-					<%= form_tag companies_path, :method => 'get' do %>	
-						<%= text_field_tag :search, params[:search], class: "form-control" %>
-						<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
-					<% end %>
-				</div>
-			</div>
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1>Companies</h1>		
+	</div>
+</div>
 
-			<h1>All Companies</h1>
-			
-			<% #<%= will_paginate %>
-
-			<ul class="companies">
-				<% @companies.each do |company| %>
-			 		<% if current_user.admin? %>
-				 		<li>
-							<%= link_to company.name, company %> | 
-							<%= link_to "Edit", edit_company_path(company) %> | 
-							<%= link_to "Delete", company, method: :delete, data: {confirm: "You sure?"} %>
-						</li>
-					<% else %>
-				 		<li>
-							<%= link_to company.name, company %>
-						</li>
-					<% end %>
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+		<ul class="companies">
+			<% @companies.each do |company| %>
+		 		<% if current_user.admin? %>
+			 		<li>
+						<%= link_to company.name, company %> | 
+						<%= link_to "Edit", edit_company_path(company) %> | 
+						<%= link_to "Delete", company, method: :delete, data: {confirm: "You sure?"} %>
+					</li>
+				<% else %>
+			 		<li>
+						<%= link_to company.name, company %>
+					</li>
 				<% end %>
-			</ul>
-			<% #<%= will_paginate %>
+			<% end %>
+		</ul>
 
-		<% else %>
-		Not allowed.
-		<% end %>		
+		<%= will_paginate(renderer: BootstrapPagination::Rails) %>
+	</div>
+
+	<%# 検索ボックス。結果は50音順昇順 %>
+	<div class="col-md-4">
+		<div class="form-inline">
+			<div class="form-group">
+				<%= form_tag companies_path, :method => 'get' do %>	
+					<%= text_field_tag :search, params[:search], class: "form-control" %>
+					<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>

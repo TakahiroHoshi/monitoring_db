@@ -1,33 +1,8 @@
 <% provide(:title, 'Update product') %>
-<h1>Edit product</h1>
-
 <div class="row">
-	<div class="span6 offset3">
-		<%= form_for(@product) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-
-			<%= f.label :name, "Product Name" %>
-			<%= f.text_field :name %>
-
-			<%= f.label :description, "Description" %>
-			<%= f.text_area :description %>
-
-			<%= f.label :type, "Product Type" %>
-			<%= f.text_field :type %>
-
-			<%= f.label :released_date, "Released Date" %>
-			<%= f.date_field :released_date %>
-
-			<%= f.label :tag_list, "Tag" %>
-			<%= f.text_field :tag_list %>
-			<br /><%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
-
-			<%= f.label :company_id, "Company ID" %>
-			<%= f.text_field :company_id %>
-
-			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
-			
-		<% end %>
+	<div class="col-md-8	col-md-offset-2 page-header">
+		<h1>Edit product</h1>
 	</div>
 </div>
 
+<%= render 'form' %>

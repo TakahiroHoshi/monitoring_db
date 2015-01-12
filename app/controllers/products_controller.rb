@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 	#before_action :observer_user, only: [:index, :search, :show]
 
   def index
-  	@products = Product.search(params[:search])
+    @products = Product.search(params[:search], params[:page])
   end
 
   def new
@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   	if @product.update_attributes(product_params)
   		flash[:success] = "Updated successfully."
-  		redirect_to @product
+      redirect_to company_path(@product.company_id)
   	else
   		render 'edit'
   	end

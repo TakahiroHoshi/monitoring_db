@@ -1,37 +1,81 @@
 <% provide(:title, 'Update company') %>
-<h1>Update company information</h1>
+<div class="row">
+	<div class="col-md-8	col-md-offset-2 page-header">
+		<h1>Update company information</h1>
+	</div>
+</div>
 
 <div class="row">
-	<div class="span6 offset3">
+	<div class="col-md-6	col-md-offset-3">
 		<%= form_for(@company) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.label :name %>
-			<%= f.text_field :name %>
+		<div class="row">
+			<div class="form-horizontal">
+				<div class="form-group">
+					<%= f.label :name, "Company Name", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+						<%= f.text_field :name, class: "form-control" %>
+					</div>
+				</div>
 
-			<%= f.label :logo_image %>
-			<%= f.file_field :logo_image, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
-			
-			<%= f.label :hq_country %>
-			<%= f.text_field :hq_country %>
+				<div class="form-group">
+					<%= f.label :logo_image, "Logo Image", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.file_field :logo_image, accept: 'image/jpeg, image/jpg, image/png, image/gif' %>
+					</div>
+				</div>
 
-			<%= f.label :multinational %>
-			<%= f.text_field :multinational %>
+				<div class="form-group">
+					<%= f.label :hq_country, "HQ Country", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.text_field :hq_country, class: "form-control" %>
+					</div>
+				</div>
 
-			<%= f.label :description %>
-			<%= f.text_area :description %>
+				<div class="form-group">
+					<%= f.label :multinational, "Multinational Capacity", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.text_field :multinational, class: "form-control" %>
+					</div>
+				</div>
 
-			<%= f.label :founded_date %>
-			<%= f.date_field :founded_date %>
+				<div class="form-group">
+					<%= f.label :description, "Description", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.text_area :description, class: "form-control" %>
+					</div>
+				</div>
 
-			<%= f.label :closed_date %>
-			<%= f.date_field :closed_date %>
+				<div class="form-group">
+					<%= f.label :founded_date, "Founded Date", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.date_field :founded_date, class: "form-control" %>
+					</div>
+				</div>
 
-			<%= f.label :stage %>
-			<%= f.text_field :stage %>
+				<div class="form-group">
+					<%= f.label :closed_date, "Closed Date", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.date_field :closed_date, class: "form-control" %>
+					</div>
+				</div>
 
-			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
-			
+				<div class="form-group">
+					<%= f.label :stage, "Investment Round", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+					<%= f.text_field :stage, class: "form-control" %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="h1 col-md-offset-6">
+				<%= f.submit "Update", class: "btn btn-lg btn-primary" %>
+			</div>
+		</div>
+	
 		<% end %>
 	</div>
 </div>

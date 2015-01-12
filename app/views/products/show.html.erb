@@ -1,16 +1,44 @@
 <% provide(:title, @product.name) %>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<h2>
-			<%= @product.name %>
-		</h2>
-	  <div>
-	    <%= link_to "Edit #{@product.name}", edit_product_path %>
-	  </div>
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1><%= @product.name %></h1>
+		<%= link_to "Edit", edit_product_path %> /
+		<%= link_to "Delete", @product, method: :delete, data: {confirm: "You sure?"} %>
 
-		<%= render @product %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+		<h4>Description</h4>
+		<% if @product.description.present? %>
+		<%= @product.description %>
+		<% else %>
+		<br />
+		<% end %>
+
+		<h4>Product Type</h4>
+		<% if @product.type.present? %>
+		<%= @product.type %>
+		<% else %>
+		<br />
+		<% end %>
+
+		<h4>Released Date</h4>
+		<% if @product.released_date.present? %>
+		<%= @product.released_date %>
+		<% else %>
+		<br />
+		<% end %>
+
+		<h4>Tag</h4>
+		<% @product.tags.each do |tag| %>
+			<%= link_to tag, tag_path(tag
+			) %> /
+		<% end %>
 
 		<h4>Company</h4>
 		<%= link_to Company.find_by_id(@product.company_id).name, company_path(id: @product.company_id) %>
-		</div>
+	</div>
 </div>

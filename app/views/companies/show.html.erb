@@ -1,7 +1,9 @@
 <% provide(:title, @company.name) %>
 	
-	<%= render @company %>
+<%# Company情報はパーシャル %>
+<%= render @company %>
 
+<%# productsがなければnewのリンクのみを表示する分岐 %>
 <% if @company.products.empty? %>
 	<div class="col-md-offset-2 col-md-8 segment">
 		<h2>Products</h2>
@@ -49,7 +51,7 @@
 	</div>
 <% end %>
 
-<!--
+<%# commentsがなければnewのリンクのみを表示する分岐 %>
 <% if @company.comments.empty? %>
 	<div class="col-md-offset-2 col-md-8 segment">
 		<h2>Comments</h2>
@@ -91,7 +93,6 @@
 		<%= link_to "Add new link", new_link_path(company_id: @company) %>
 	</div>
 <% end %>
--->
 
 <% if @company.news_articles.empty? %>	
 	<div class="col-md-offset-2 col-md-8 segment">

@@ -22,12 +22,8 @@ class Company < ActiveRecord::Base
 	accepts_nested_attributes_for :links
 	accepts_nested_attributes_for :news_articles
 
-  def self.search(search)
-    if search
-      Company.where(['name LIKE ?', "%#{search}%"])
-    else
-      Company.all
-    end
+  def self.search(search, page)
+      paginate per_page: 30, page: page, conditions: ['name LIKE ?', "%#{search}%"], order: 'name ASC'
   end
 
 

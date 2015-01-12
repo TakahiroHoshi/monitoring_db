@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-md-6	col-md-offset-3">
+		<%= form_for(@comment) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+		<div class="row">
+			<div class="form-horizontal">
+				<div class="form-group">
+					<%= f.label :comment, "Comment", class: "col-md-4 control-label" %>
+					<div class="col-md-8">
+						<%= f.text_area :comment, class: "form-control" %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%= f.hidden_field :company_id %>
+
+		<div class="row">
+			<div class="h1 col-md-offset-6">
+				<%= f.submit "Submit", class: "btn btn-lg btn-primary" %>
+			</div>
+		</div>
+			
+		<% end %>
+	</div>
+</div>
+

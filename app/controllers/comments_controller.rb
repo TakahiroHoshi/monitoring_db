@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :signed_in_user
 
   def index
-  	@comments = Comment.all.paginate(page: params[:page])
+    @comments = Comment.search(params[:search], params[:page])
   end
 
   def new
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   	if @comment.update_attributes(comment_params)
   		flash[:success] = "Updated successfully."
-  		redirect_to @comment
+  		redirect_to company_path(@comment.company_id)
   	else
   		render 'edit'
   	end

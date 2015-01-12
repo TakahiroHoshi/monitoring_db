@@ -3,8 +3,7 @@ class CompaniesController < ApplicationController
 	#before_action :observer_user, only: [:index, :search, :show]
 
   def index
-  	#@companies = Company.paginate(page: params[:page])
-    @companies = Company.search(params[:search])
+    @companies = Company.search(params[:search], params[:page])
   end
 
   def new

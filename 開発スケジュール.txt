@@ -41,10 +41,10 @@
 	* サブテーブルのDeleteのあとに元のCompanyに戻るようにしたい
 	* タグをクリックした時に、そのタグを持つProduct(とそのProductを持つCompany)とCompanyを一覧表示させる
 	* ロゴ画像を自動的にリサイズする機能の実装(originalは表示できるけどリサイズした画像が表示されない！)
-	・bootstrap3に合わせてcssとerbを大工事しないと。。。
+	* bootstrap3に合わせてcssとerbを大工事しないと。。。
 	・アラートの正常な表示
 	・Companyのshowをカセット形に表示を変更する
-	・Companyのindexでpaginationを適用する
+	* Companyのindexでpaginationを適用する
 	・デバッグの枠がないと下のほうが下の帯に沈んでしまうのを修正
 2.6. CompanyのサブテーブルpagenateをAJAX対応
 	・サブテーブルのPagenateを整理・実装
@@ -60,7 +60,11 @@
 	・
 2.9. import機能の実装
 	・CSV形式によるimport機能を実装する
-
+2.10. できたら改修リスト
+	・Searchに単語が入っていない場合にcompany#indexになるのを修正
+	・同一名称のCompanyの作成を弾く
+	・各テーブルの必須入力項目(name,)
+	・Company/#newでProduct以下のテーブルで空白だった場合はレコードを作成しないロジック
 
 3. ファイルサーバ
 3.1. ファイルサーバーgemの検索

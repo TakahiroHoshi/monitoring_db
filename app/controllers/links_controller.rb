@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   before_action :signed_in_user
 
   def index
-  	@links = Link.all.paginate(page: params[:page])
+    @links = Link.search(params[:search], params[:page])
   end
 
   def new
@@ -31,7 +31,7 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
   	if @link.update_attributes(link_params)
   		flash[:success] = "Updated successfully."
-  		redirect_to @link
+      redirect_to company_path(@link.company_id)
   	else
   		render 'edit'
   	end

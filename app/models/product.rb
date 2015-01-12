@@ -4,15 +4,11 @@ class Product < ActiveRecord::Base
 
   acts_as_taggable
   acts_as_taggable_on :tags
-  scope :by_added_date, order("created_at DESC")
+  #scope :by_added_date, order("created_at DESC")
 
 
-  def self.search(search)
-    if search
-      Product.where(['name LIKE ?', "%#{search}%"])
-    else
-      Product.all
-    end
+  def self.search(search, page)
+      paginate per_page: 30, page: page, conditions: ['name LIKE ?', "%#{search}%"], order: 'name ASC'
   end
 
 end
