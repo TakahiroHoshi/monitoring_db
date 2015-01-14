@@ -1,12 +1,39 @@
 <% provide(:title) %>
+
 <div class="row">
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1><%= @news_article.title %></h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
 		<h4>Company</h4>
-    <%= link_to Company.find_by_id(@news_article.company_id).name, company_path(id: @news_article.company_id) %><br />
-    <h4>Title</h4>
-    [<%= @news_article.date %>] <%= link_to @news_article.title, @news_article.url %><br />
-    by <%= @news_article.publisher %>
-    <h4>Article</h4>
-    <%= @news_article.content%>
-    <h4>Comment</h4>
-    <%= @news_article.comment%>
+		<%# find_companyはヘルパーメソッド %>
+    <%= link_to find_company.name, company_path(find_company) %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>URL</h4>
+    <%= link_to @news_article.url, @news_article.url %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Published Date</h4>
+		<%= @news_article.date %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Publisher</h4>
+		<%= @news_article.publisher %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Content</h4>
+		<div class="articles-box">
+	    <%= @news_article.content %>
+	  </div>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Comment</h4>
+		<div class="articles-box">
+	    <%= @news_article.comment %>
+	  </div>
+	</div>
 </div>

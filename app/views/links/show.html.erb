@@ -1,8 +1,18 @@
 <% provide(:title) %>
 <div class="row">
-	<h4>Company</h4>
-	<%= link_to Company.find_by_id(@link.company_id).name, company_path(id: @link.company_id) %><br />
-	<h4>Link</h4>
-  <%= @link.link_type %><br />
-  <%= link_to @link.url, @link.url %>
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<%# find_companyはヘルパーメソッド %>
+		<h1><%= find_company.name %>&nbsp;/&nbsp;<%= @link.link_type %></h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Company</h4>
+    <%= link_to find_company.name, company_path(find_company) %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Link</h4>
+  <%= @link.link_type %>: <%= link_to @link.url, @link.url %>
+	</div>
 </div>

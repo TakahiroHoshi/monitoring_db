@@ -2,7 +2,7 @@ class NewsArticlesController < ApplicationController
   before_action :signed_in_user
 
   def index
-  	@news_articles = NewsArticle.all.paginate(page: params[:page])
+  	@news_articles = NewsArticle.search(params[:search], params[:page])
   end
 
   def new
@@ -31,7 +31,7 @@ class NewsArticlesController < ApplicationController
     @news_article = NewsArticle.find(params[:id])
   	if @news_article.update_attributes(news_article_params)
   		flash[:success] = "Updated successfully."
-  		redirect_to @news_article
+  		redirect_to company_path(@news_article.company_id)
   	else
   		render 'edit'
   	end
@@ -40,7 +40,7 @@ class NewsArticlesController < ApplicationController
   def destroy
     company_id = NewsArticle.find(params[:id]).company_id
   	NewsArticle.find(params[:id]).destroy
-    flash[:success] = "Link deleted."
+    flash[:success] = "Article deleted."
     redirect_to company_path(company_id)
   end
 

@@ -1,23 +1,8 @@
 <% provide(:title, 'New link') %>
-<h1>Add a new link</h1>
-
 <div class="row">
-	<div class="span6 offset3">
-		<%= form_for(@link) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-
-			<%= f.label :link_type, "Link Type" %>
-			<%= f.text_field :link_type %>
-
-			<%= f.label :url, "URL" %>
-			<%= f.text_field :url %>
-
-			<%= f.hidden_field :company_id %>
-			<br />
-
-			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-			
-		<% end %>
+	<div class="col-md-8	col-md-offset-2 page-header">
+		<h1>Add new link</h1>
 	</div>
 </div>
 
+<%= render 'form' %>

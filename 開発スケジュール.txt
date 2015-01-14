@@ -45,7 +45,7 @@
 	・アラートの正常な表示
 	・Companyのshowをカセット形に表示を変更する
 	* Companyのindexでpaginationを適用する
-	・デバッグの枠がないと下のほうが下の帯に沈んでしまうのを修正
+	* デバッグの枠がないと下のほうが下の帯に沈んでしまうのを修正
 2.6. CompanyのサブテーブルpagenateをAJAX対応
 	・サブテーブルのPagenateを整理・実装
 	・AJAX対応

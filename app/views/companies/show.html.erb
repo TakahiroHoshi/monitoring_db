@@ -74,25 +74,6 @@
 	</div>
 <% end %>
 
-<% if @company.links.empty? %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>Links</h2>
-		<%= link_to "Add new link", new_link_path(company_id: @company) %>
-	</div>
-<% else %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>Links</h2>	
-		<ul>
-			<% @links.each do |link| %>
-			<li><%= link_to link.link_type, link.url %>
-				<%= link_to "Edit", edit_link_path(link) %> /
-				<%= link_to "Delete", link, method: :delete, data: {confirm: "You sure?"} %>
-			</li>
-			<% end %>
-		</ul>
-		<%= link_to "Add new link", new_link_path(company_id: @company) %>
-	</div>
-<% end %>
 
 <% if @company.news_articles.empty? %>	
 	<div class="col-md-offset-2 col-md-8 segment">
@@ -105,8 +86,9 @@
 		<% @news_articles.each do |article| %>
 			<div class = "segment">
 		    <h3><%= link_to article.title, article.url %></h3>
-		    Posted: <%= article.date %>&nbsp;&nbsp;&nbsp;&nbsp;by <%= article.publisher %>
-		    <h4>Article</h4>
+		    <p>Published on: <%= article.date %> <br />
+		    Publisher: <%= article.publisher %></p>
+		    <h4>Content</h4>
 		    <div class="articles-box">
 			    <%= article.content%>	    	
 		    </div>
