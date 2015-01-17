@@ -1,11 +1,14 @@
 <% provide(:title, @tag.name) %>
 <div class="row">
-	<section class="span12">
-		<h1>
-			<%= @tag.name %>
-		</h1>
-	</section>
-	<section class="span6">
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1>Tag: <%= @tag.name %></h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+		<h4>Tagged products</h4>
 		<% @tagged_product.each do |product| %>
 			<% @company = Company.find(product.company_id) %>
 			<ul>
@@ -14,8 +17,8 @@
 				</li>
 			</ul>
 		<% end %>
-	</section>
-	<section class="span6">
+
+		<h4>Tagged companies</h4>
 		<% @tagged_product.each do |product| %>
 			<% @company = Company.find(product.company_id) %>
 			<ul>
@@ -24,6 +27,5 @@
 				</li>
 			</ul>
 		<% end %>
-	</section>
-
+	</div>
 </div>

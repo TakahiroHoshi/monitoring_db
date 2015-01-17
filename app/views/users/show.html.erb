@@ -1,27 +1,40 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-	<div class="span4">
-		<section>
-			<h1>
-				<%= @user.name %>
-			</h1>
-		</section>
-		<div>
-			<h4>Eメール</h4>
-			<%= @user.email %>
-			<h4>社員番号</h4>
-			<%= @user.id_num %>
-			<h4>所属組織</h4>
-			<%= @user.organization %>
-			<h4>ユーザー権限</h4>
-			<% if @user.admin? %>
-			<%= "admin" %>
-			<% elsif @user.regular? %>
-			<%= "ユーザー" %>
-			<% elsif @user.observer? %>
-			<%= "オブザーバー" %>
-			<% else %>
-			<% end %>
-		</div>
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1><%= @user.name %></h1>
 	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+			<h4>Email</h4>
+		<% if @user.email.present? %>
+			<%= @user.email %>
+		<% else %>
+			<br />
+		<% end %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+			<h4>ID Number</h4>
+		<% if @user.id_num.present? %>
+			<%= @user.id_num %>
+		<% else %>
+			<br />
+		<% end %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+			<h4>Organization</h4>
+		<% if @user.organization.present? %>
+			<%= @user.organization %>
+		<% else %>
+			<br />
+		<% end %>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<h4>Role</h4>
+		<%= "admin " if @user.admin? %>
+		<%= "user " if @user.regular? %>
+		<%= "observer" if @user.observer? %>
+	</div>
+
 </div>

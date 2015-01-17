@@ -9,31 +9,55 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Company</h4>
-		<%# find_companyはヘルパーメソッド %>
-    <%= link_to find_company.name, company_path(find_company) %>
+		<% if find_company.name.present? %>
+			<%# find_companyはヘルパーメソッド %>
+	    <%= link_to find_company.name, company_path(find_company) %>
+		<% else %>
+			<br />
+		<% end %>
 	</div>
 	<div class="col-md-8 col-md-offset-2">
 		<h4>URL</h4>
-    <%= link_to @news_article.url, @news_article.url %>
+		<% if @news_article.url.present? %>
+	    <%= link_to @news_article.url, @news_article.url %>
+		<% else %>
+			<br />
+		<% end %>
 	</div>
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Published Date</h4>
-		<%= @news_article.date %>
+		<% if @news_article.date.present? %>
+			<%= @news_article.date %>
+		<% else %>
+			<br />
+		<% end %>
 	</div>
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Publisher</h4>
-		<%= @news_article.publisher %>
+		<% if @news_article.publisher.present? %>
+			<%= @news_article.publisher %>
+		<% else %>
+			<br />
+		<% end %>
 	</div>
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Content</h4>
-		<div class="articles-box">
-	    <%= @news_article.content %>
-	  </div>
+		<% if @news_article.content.present? %>
+			<div class="articles-box">
+		    <%= @news_article.content %>
+		  </div>
+		<% else %>
+			<br />
+		<% end %>
 	</div>
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Comment</h4>
-		<div class="articles-box">
-	    <%= @news_article.comment %>
-	  </div>
+		<% if @news_article.comment.present? %>
+			<div class="articles-box">
+		    <%= @news_article.comment %>
+		  </div>
+		<% else %>
+			<br />
+		<% end %>
 	</div>
 </div>

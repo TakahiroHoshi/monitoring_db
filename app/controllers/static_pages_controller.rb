@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_action :signed_in_user
+  
   def home
   end
 
@@ -10,5 +12,17 @@ class StaticPagesController < ApplicationController
 
   def signup
   end
+
+  def startsearch
+    @tag = Tag.all
+  end
+
+  private
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to root_path, notice: "Please sign in."
+      end
+    end
 
 end

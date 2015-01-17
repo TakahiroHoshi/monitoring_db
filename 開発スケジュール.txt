@@ -43,7 +43,7 @@
 	* ロゴ画像を自動的にリサイズする機能の実装(originalは表示できるけどリサイズした画像が表示されない！)
 	* bootstrap3に合わせてcssとerbを大工事しないと。。。
 	・アラートの正常な表示
-	・Companyのshowをカセット形に表示を変更する
+	* Companyのshowをカセット形に表示を変更する
 	* Companyのindexでpaginationを適用する
 	* デバッグの枠がないと下のほうが下の帯に沈んでしまうのを修正
 2.6. CompanyのサブテーブルpagenateをAJAX対応
@@ -65,6 +65,9 @@
 	・同一名称のCompanyの作成を弾く
 	・各テーブルの必須入力項目(name,)
 	・Company/#newでProduct以下のテーブルで空白だった場合はレコードを作成しないロジック
+	・LinkとCommentでHelperのcompany_idがエラーを吐く件
+	・startsearchにタグを並べる
+	・tagのindexのページネーション
 
 3. ファイルサーバ
 3.1. ファイルサーバーgemの検索

@@ -1,5 +1,6 @@
 class TagController < ApplicationController
-
+  before_action :signed_in_user
+  
 	def index
 		@tag = Tag.all.paginate(page: params[:page])
 	end
@@ -26,5 +27,13 @@ class TagController < ApplicationController
     flash[:success] = "tag deleted."
     redirect_to tag_index_path
 	end
+
+	private
+	  def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to root_path, notice: "Please sign in."
+      end
+    end
 
 end

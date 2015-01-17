@@ -1,19 +1,21 @@
 <% provide(:title, 'All Tags') %>
-<% if signed_in? %>
-	<h1>All tags</h1>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1>Tags</h1>
+	</div>
+</div>
 
-	<%= will_paginate %>
-
-	<ul class="tags">
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+		<ul class="tags">
 		<% @tag.each do |tag| %>
 	 		<li>
 				<%= link_to tag.name, tag %> | 
 				<%= link_to "Delete", tag, method: :delete, data: {confirm: "You sure?"} %>
 			</li>
 		<% end %>
-	</ul>
-	<%= will_paginate %>
+		</ul>
+		<%= will_paginate(renderer: BootstrapPagination::Rails) %>
+	</div>
+</div>
 
-<% else %>
-Not allowed.
-<% end %>
