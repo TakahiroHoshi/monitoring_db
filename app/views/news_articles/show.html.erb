@@ -9,9 +9,9 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Company</h4>
-		<% if find_company.name.present? %>
+		<% if Company.find_by_id(@news_article.company_id).name.present? %>
 			<%# find_companyはヘルパーメソッド %>
-	    <%= link_to find_company.name, company_path(find_company) %>
+	    <%= link_to Company.find_by_id(@news_article.company_id).name, company_path(Company.find_by_id(@news_article.company_id)) %>
 		<% else %>
 			<br />
 		<% end %>

@@ -1,7 +1,7 @@
 <% provide(:title) %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 page-header">
-		<h1><%= link_to find_company.name, company_path(id: find_company.id) %></h1>
+		<h1><%= link_to Company.find_by_id(@comment.company_id).name, company_path(id: Company.find_by_id(@comment.company_id)) %></h1>
 		<%= link_to "Edit", edit_comment_path %> /
 		<%= link_to "Delete", @comment, method: :delete, data: {confirm: "You sure?"} %>
 

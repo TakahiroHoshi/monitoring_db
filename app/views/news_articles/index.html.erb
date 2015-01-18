@@ -10,7 +10,7 @@
 		<ul class="newsarticles">
 			<% @news_articles.each do |article| %>
 		 		<li>
-					<%= link_to Company.find_by_id(article.company_id).name, Company.find_by_id(article.company_id) %> | <%= link_to article.title, article.url %> | 
+					<%= link_to Company.find_by_id(article.company_id).name, Company.find_by_id(article.company_id) %> | <%= link_to article.title, article %> | 
 					<%= link_to "Edit", edit_news_article_path(article) %> | 
 					<%= link_to "Delete", article, method: :delete, data: {confirm: "You sure?"} %>
 				</li>

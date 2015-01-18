@@ -2,15 +2,15 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 page-header">
 		<%# find_companyはヘルパーメソッド %>
-		<h1><%= find_company.name %>&nbsp;/&nbsp;<%= @link.link_type %></h1>
+		<h1><%= Company.find_by_id(@link.company_id).name %>&nbsp;/&nbsp;<%= @link.link_type %></h1>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Company</h4>
-		<% if find_company.name.present? %>
-    	<%= link_to find_company.name, company_path(find_company) %>
+		<% if Company.find_by_id(@link.company_id).name.present? %>
+    	<%= link_to Company.find_by_id(@link.company_id).name, company_path(Company.find_by_id(@link.company_id)) %>
 		<% else %>
 			<br />
 		<% end %>
@@ -18,7 +18,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Link</h4>
 		<% if @link.link_type.present? %>
-		  <%= @link.link_type %>: <%= link_to @link.url, @link.url %>
+			<%= link_to @link.url, @link.url %>
 		<% else %>
 			<br />
 		<% end %>

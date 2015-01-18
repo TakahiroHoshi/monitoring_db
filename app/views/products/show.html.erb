@@ -1,7 +1,7 @@
 <% provide(:title, @product.name) %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 page-header">
-		<h1><%= @product.name %></h1>
+		<h1>"<%= @product.name %>" by <%= link_to find_company.name, company_path(find_company) %></h1>
 		<%= link_to "Edit", edit_product_path %> /
 		<%= link_to "Delete", @product, method: :delete, data: {confirm: "You sure?"} %>
 
@@ -39,6 +39,6 @@
 		<% end %>
 
 		<h4>Company</h4>
-		<%= link_to Company.find_by_id(@product.company_id).name, company_path(id: @product.company_id) %>
+		<%= link_to find_company.name, company_path(find_company) %>
 	</div>
 </div>
