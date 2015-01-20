@@ -1,16 +1,15 @@
 class Ability
   include CanCan::Ability
 
+#なんかようわからんけどちゃんと動かない
   def initialize(user)
     user ||= User.new
     if user.admin?
         can :manage, :all
     elsif user.regular?
-        can :manage, [Company, Comment, Link, NewsArticle, Person, Product, Tag]
+        can :manage, [Company, Comment, Link, NewsArticle, Product, Tag]
     elsif user.observer?
-        can :read, [Company, Comment, Link, NewsArticle, Person, Product, Tag]
-    else
-
+        can :read, [:Company, :Comment, :Link, :NewsArticle, :product, :Tag]
     end
 
 

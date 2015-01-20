@@ -1,5 +1,6 @@
 class TagController < ApplicationController
   before_action :signed_in_user
+	before_action :as_observer, only: [:new, :edit, :destroy]
   
 	def index
 		@tag = Tag.all.paginate(page: params[:page])

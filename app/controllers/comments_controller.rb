@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :signed_in_user
+  before_action :as_observer, only: [:new, :edit, :destroy]
 
   def index
     @comments = Comment.search(params[:search], params[:page])

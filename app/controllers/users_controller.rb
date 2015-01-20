@@ -68,12 +68,9 @@ class UsersController < ApplicationController
       if current_user?(@user)
       elsif current_user.admin?
       else
-          redirect_to root_path
+          redirect_to startsearch_path #root_path
       end
     end
 
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
 
 end

@@ -64,10 +64,12 @@
 	・Searchに単語が入っていない場合にcompany#indexになるのを修正
 	・同一名称のCompanyの作成を弾く
 	・各テーブルの必須入力項目(name,)
-	・Company/#newでProduct以下のテーブルで空白だった場合はレコードを作成しないロジック
 	・LinkとCommentでHelperのcompany_idがエラーを吐く件
 	・startsearchにタグを並べる
 	・tagのindexのページネーション
+2.11. リリースまでに改修必須リスト
+	・Cmpany#newで空白でもサブテーブルのレコードが作成されてしまうバグ
+
 
 3. ファイルサーバ
 3.1. ファイルサーバーgemの検索

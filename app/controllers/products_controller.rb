@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :signed_in_user
-	#before_action :observer_user, only: [:index, :search, :show]
+  before_action :as_observer, only: [:new, :edit, :destroy]
 
   def index
     @products = Product.search(params[:search], params[:page])

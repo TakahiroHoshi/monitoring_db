@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :signed_in_user
-	#before_action :observer_user, only: [:index, :search, :show]
+	before_action :as_observer, only: [:new, :edit, :destroy]
 
   def index
     @companies = Company.search(params[:search], params[:page])
@@ -65,10 +65,6 @@ class CompaniesController < ApplicationController
         links_attributes: [:link_type, :url,], 
         news_articles_attributes: [:date, :title, :content, :comment, :publisher, :url])
     end
-
-  	def observer_user
-  		redirect_to 'show' unless current_user.observer?
-  	end
 
     def signed_in_user
       unless signed_in?

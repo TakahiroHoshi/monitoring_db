@@ -33,17 +33,20 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-md-4 control-label">
-						<h4>Role</h4>
+				<% if current_user.admin? %>
+					<div class="form-group">
+						<div class="col-md-4 control-label">
+							<h4>Role</h4>
+						</div>
+						<div class="col-md-8">
+							<p><%= f.check_box :admin %> admin</p>
+							<p><%= f.check_box :regular, {:checked => true} %> ユーザー</p>
+							<p><%= f.check_box :observer %> オブザーバー</p>
+						</div>
 					</div>
-					<div class="col-md-8">
-						<p><%= f.check_box :admin %> admin</p>
-						<p><%= f.check_box :regular, {:checked => true} %> ユーザー</p>
-						<p><%= f.check_box :observer %> オブザーバー</p>
-					</div>
-				</div>
-
+				<% else %>
+				<% end %>
+	
 				<div class="form-group">
 					<%= f.label :password, "Password", class: "col-md-4 control-label" %>
 					<div class="col-md-8">

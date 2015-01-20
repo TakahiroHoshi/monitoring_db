@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :signed_in_user
+  before_action :as_observer, only: [:new, :edit, :destroy]
 
   def index
     @links = Link.search(params[:search], params[:page])
