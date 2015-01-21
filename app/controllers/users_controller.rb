@@ -7,11 +7,6 @@ class UsersController < ApplicationController
     @users = User.search(params[:search], params[:page])
 	end
 
-#	def search
-#		@users = User.search(params[:q])
-#		render "index"
-#	end
-
   def new
     @user = User.new
   end
