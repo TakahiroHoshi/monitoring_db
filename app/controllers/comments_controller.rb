@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
   before_action :signed_in_user
   before_action :as_observer, only: [:new, :edit, :destroy]
+  before_action :current_user, only: [:new, :edit, :destroy]
 
   def index
     @comments = Comment.search(params[:search], params[:page])
   end
 
   def new
-  	@comment = Comment.new(company_id: params[:company_id])
+  	@comment = Comment.new(company_id: params[:company_id], userstamp: @current_user.name)
   end
 
   def create
@@ -47,7 +48,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:comment, :company_id)
+      params.require(:comment).permit(:comment, :company_id, :userstamp)
     end
 
 #  	def observer_user
@@ -60,5 +61,13 @@ class CommentsController < ApplicationController
         redirect_to root_path, notice: "Please sign in."
       end
     end
+
+  #comment作成・更新ユーザー名を取得するためのbefore_action
+  def current_user
+    remember_token = User.encrypt(cookies[:remember_token])
+    @current_user ||= User.find_by(remember_token: remember_token)
+    return @current_user
+  end
+
 
 end

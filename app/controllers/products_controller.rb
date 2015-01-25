@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :description, :type, :released_date, :company_id, :tag_list)
+      params.require(:product).permit(:name, :description, :hr_process, :rev_model, :released_date, :company_id, :tag_list)
     end
 
   	def observer_user

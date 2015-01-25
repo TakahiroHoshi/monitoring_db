@@ -11,10 +11,8 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h4>Comment</h4>
-		<% if @comment.comment.present? %>
-	    <%= @comment.comment %><br />
-		<% else %>
-			<br />
-		<% end %>
+		<%= @comment.comment %>
+		<div class="userstamp">@<%= @comment.userstamp if @comment.userstamp.present? %><br />
+		</div>
 	</div>
 </div>

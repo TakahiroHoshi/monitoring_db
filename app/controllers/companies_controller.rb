@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
   before_action :signed_in_user
 	before_action :as_observer, only: [:new, :edit, :destroy]
+  #commentの@current_user取得用before_action
+  before_action :current_user, only: [:show]
 
   def index
     @companies = Company.search(params[:search], params[:page])
@@ -8,8 +10,7 @@ class CompaniesController < ApplicationController
 
   def new
   	@company = Company.new
-#    @category_list = Product.tag_counts.order("taggings_count DESC")
-    @company.products.build
+    @company.products.build if @company.products.name.present?
     @company.comments.build
     @company.links.build
     @company.news_articles.build
@@ -72,4 +73,13 @@ class CompaniesController < ApplicationController
         redirect_to root_path, notice: "Please sign in."
       end
     end
+
+    #comment作成・更新ユーザー名を取得するためのbefore_action
+    def current_user
+      remember_token = User.encrypt(cookies[:remember_token])
+      @current_user ||= User.find_by(remember_token: remember_token)
+      return @current_user
+    end
+
+
 end

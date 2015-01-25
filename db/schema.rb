@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223065332) do
+ActiveRecord::Schema.define(version: 20150125022121) do
 
   create_table "comments", force: true do |t|
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "userstamp"
   end
 
   add_index "comments", ["comment"], name: "index_comments_on_comment"
@@ -73,15 +74,15 @@ ActiveRecord::Schema.define(version: 20141223065332) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "type"
     t.date     "released_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "hr_process"
+    t.string   "rev_model"
   end
 
   add_index "products", ["name"], name: "index_products_on_name"
-  add_index "products", ["type"], name: "index_products_on_type"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

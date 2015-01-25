@@ -1,12 +1,6 @@
 /*bootstrap-sassのミックスイン*/
+@import "bootstrap-sprockets";
 @import "bootstrap";
-
-.segment{
-  border-bottom: solid 1px #333333;
-  padding-bottom: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
- }
 
 .header-margin{
 	padding-bottom: 50px;
@@ -18,8 +12,7 @@
 
 /* Company#show */
 
-.timestamp{
- 	padding-top: 30px;
+.control{
  }
 
 .articles-box{
@@ -31,6 +24,20 @@
 	border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border: solid 1px #ddd;
+}
+
+.userstamp{
+  text-align: right;
+}
+
+.segment{
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+ }
+
+.bd-bottom{
+  border-bottom: solid 1px #aaa;
 }
 
 /* Startsearch page */

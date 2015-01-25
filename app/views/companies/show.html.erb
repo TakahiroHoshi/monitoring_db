@@ -1,17 +1,140 @@
 <% provide(:title, @company.name) %>
 	
-<%# Company情報はパーシャル %>
-<%= render @company %>
+<div class="row segment">
 
-<%# productsがなければnewのリンクのみを表示する分岐 %>
-<% if @company.products.empty? %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>Products</h2>
-			<%= link_to "Add new product", new_product_path(company_id: @company) %>
+	<%# トップ社名 %>
+	<div class="col-md-offset-2 col-md-8 page-header">
+		<h1>
+			<%= @company.name %>
+		<% if @company.logo_image.present? %>
+		<%= image_tag @company.logo_image.url(:thumb) %>
+		<% else %>
+		<% end %>
+		</h1>
+		<div class="control">
+			<%= link_to "Edit company info", edit_company_path %> /
+			<%= link_to "Delete", @company, method: :delete, data: {confirm: "You sure?"} %>
+		</div>
+
 	</div>
-<% else %>
+
+	<%# 左側 %>
+	<div class="col-md-offset-2 col-md-4">
+		<h4>HQ Country</h4>
+		<%= @company.hq_country %>
+		<h4>Multinational Capacity</h4>
+
+		<%= @company.multinational %>
+		<h4>Links
+		<%= link_to new_link_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h4>
+			<ul>
+				<% @links.each do |link| %>
+				<li><%= link_to link.link_type, link.url %>&nbsp;&nbsp;&nbsp;&nbsp;
+					<%= link_to "Edit", edit_link_path(link) %> /
+					<%= link_to "Delete", link, method: :delete, data: {confirm: "You sure?"} %>
+				</li>
+				<% end %>
+			</ul>
+	</div>
+
+	<%# 右側 %>
+	<div class="col-md-4">
+		<h4>Founded Date</h4>
+			<% if @company.founded_date.present? %>
+			<%= @company.founded_date %>
+			<% else %>
+			<br />
+			<% end %>
+		<h4>Closed Date</h4>
+			<% if @company.closed_date.present? %>
+			<%= @company.closed_date %>
+			<% else %>
+			<br />
+			<% end %>
+		<h4>Funding Stage</h4>
+			<% if @company.stage.present? %>
+			<%= @company.stage %>
+			<% else %>
+			<br />
+			<% end %>
+		<h4>Tags</h4>
+			<% @company.products.each do |product| %>
+				<% product.tags.each do |tag| %>
+					<%= link_to tag, tag_path(tag) %> /
+				<% end %>
+			<% end %>
+	</div>
+</div>
+
+<%# 中央下のDescription欄 %>
+<div class="row bd-bottom">
+	<div class="col-md-offset-2 col-md-8">
+		<h4>Description</h4>
+		<div>
+			<%= @company.description %>
+		</div>
+	</div>
+
+<%# Company/Description直下のコメント %>
+	<%# commentsがなければnewのリンクのみを表示する分岐 %>
+	<% if @company.comments.empty? %>
 	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>Products</h2>
+		<h4>Comments
+		<%= link_to new_comment_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h4>
+	</div>
+
+	<%# commentsがあれば、全コメントを表示する %>
+	<% else %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h4>Comments
+		<%= link_to new_comment_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h4>
+		<% @comments.each do |com| %>
+			<div class="segment">
+				<%= com.comment %>
+				<div class="userstamp small">@<%= com.userstamp if com.userstamp.present? %><br />
+					<%= com.updated_at %><br />
+					<% if @current_user == User.find_by_name(com.userstamp) %>
+						<%= link_to "Edit", edit_comment_path(com) %> /
+						<%= link_to "Delete", com, method: :delete, data: {confirm: "You sure?"} %>
+					<% else %>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<% end %>
+
+</div>
+
+
+<div class="row bd-bottom" >
+	<%# productsがなければnewのリンクのみを表示する分岐 %>
+	<% if @company.products.empty? %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Products
+		<%= link_to new_product_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h2>
+	</div>
+
+	<%# productsがあれば、全プロダクトを表示する %>
+	<% else %>
+	<div class="col-md-offset-2 col-md-8 segment">
+		<h2>Products
+		<%= link_to new_product_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h2>
 		<% @products.each do |product| %>
 			<div class="segment">
 				<h3><%= product.name %></h3>
@@ -23,9 +146,16 @@
 				<br />
 				<% end %>
 
-				<h4>Product Type</h4>
-				<% if product.type.present? %>
-				<%= product.type %>
+				<h4>HR Process</h4>
+				<% if product.hr_process.present? %>
+				<%= product.hr_process %>
+				<% else %>
+				<br />
+				<% end %>
+
+				<h4>Revenue Model</h4>
+				<% if product.rev_model.present? %>
+				<%= product.rev_model %>
 				<% else %>
 				<br />
 				<% end %>
@@ -47,53 +177,31 @@
 				<%= link_to "Delete", product, method: :delete, data: {confirm: "You sure?"} %>
 			</div>
 		<% end %>
-		<%= link_to "Add new product", new_product_path(company_id: @company) %>
 	</div>
-<% end %>
-
-<%# commentsがなければnewのリンクのみを表示する分岐 %>
-<% if @company.comments.empty? %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>Comments</h2>
-			<%= link_to "Add new comment", new_comment_path(company_id: @company) %>
-	</div>
-<% else %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>Comments</h2>
-			<% @comments.each do |com| %>
-				<div class="segment">
-					<%= com.comment %>
-					<br /><br />
-					<div>
-						<%= link_to "Edit", edit_comment_path(com) %> /
-						<%= link_to "Delete", com, method: :delete, data: {confirm: "You sure?"} %>
-					</div>
-				</div>
-			<% end %>
-	<%= link_to "Add new comment", new_comment_path(company_id: @company) %>
-	</div>
-<% end %>
+	<% end %>
+</div>
 
 
-<% if @company.news_articles.empty? %>	
+<div class="row bd-bottom">
+	<% if @company.news_articles.empty? %>	
 	<div class="col-md-offset-2 col-md-8 segment">
 		<h2>News Articles</h2>
 		<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
 	</div>
-<% else %>
+	<% else %>
 	<div class="col-md-offset-2 col-md-8 segment">
 		<h2>News Articles</h2>
 		<% @news_articles.each do |article| %>
 			<div class = "segment">
 		    <h3><%= link_to article.title, article.url %></h3>
-		    <p>Published on: <%= article.date %> <br />
+		    <p>Published date: <%= article.date %> <br />
 		    Publisher: <%= article.publisher %></p>
 		    <h4>Content</h4>
-		    <div class="articles-box">
+		    <div>
 			    <%= article.content%>	    	
 		    </div>
 		    <h4>Comment</h4>
-		    <div class="articles-box">
+		    <div>
 			    <%= article.comment%>		    	
 		    </div>
 		    <br /><br />
@@ -103,5 +211,5 @@
   	<% end %>
 		<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
 	</div>
-<% end %>
+	<% end %>
 </div>

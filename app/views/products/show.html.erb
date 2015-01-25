@@ -18,9 +18,16 @@
 		<br />
 		<% end %>
 
-		<h4>Product Type</h4>
-		<% if @product.type.present? %>
-		<%= @product.type %>
+		<h4>HR Process</h4>
+		<% if @product.hr_process.present? %>
+		<%= @product.hr_process %>
+		<% else %>
+		<br />
+		<% end %>
+
+		<h4>Revenue Model</h4>
+		<% if @product.rev_model.present? %>
+		<%= @product.rev_model %>
 		<% else %>
 		<br />
 		<% end %>
