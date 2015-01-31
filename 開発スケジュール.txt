@@ -62,19 +62,21 @@
 	・CSV形式によるimport機能を実装する
 	・CSV形式のExport機能を実装する
 2.10. できたら改修リスト
-	・Searchに単語が入っていない場合にcompany#indexになるのを修正
 	・同一名称のCompanyの作成を弾く
 	・各テーブルの必須入力項目(name,)
 	* LinkとCommentでHelperのcompany_idがエラーを吐く件
 	* startsearchにタグを並べる
-	・tagのindexのページネーション
+	* tagのindexのページネーション
 2.11. リリースまでに改修必須リスト
-	・Cmpany#newで空白でもサブテーブルのレコードが作成されてしまうバグ
+	* Cmpany#newで空白でもサブテーブルのレコードが作成されてしまうバグ
 	・brute force対策(同じIDでトライしまくったらアカウントロック)
 	* 日付つき履歴を残すコメント欄を作る
 	・HR Processを選択式にする
-	・Productとかのラベルをbgcolorつけて分かりやすく
-	・newsarticleのコメントのコンテンツを短縮して全文をリンク先(show)に
+	* Productとかのラベルをbgcolorつけて分かりやすく
+	* newsarticleのコメントのコンテンツを短縮して全文をリンク先(show)に
+2.12. 運用に関して
+　・Productionのデータバックアップしてアップデートしてデータ戻す手法の確率
+
 
 
 3. ファイルサーバ

@@ -1,6 +1,6 @@
 <% provide(:title, @company.name) %>
 	
-<div class="row segment">
+<div class="row">
 
 	<%# トップ社名 %>
 	<div class="col-md-offset-2 col-md-8 page-header">
@@ -15,21 +15,23 @@
 			<%= link_to "Edit company info", edit_company_path %> /
 			<%= link_to "Delete", @company, method: :delete, data: {confirm: "You sure?"} %>
 		</div>
-
 	</div>
 
+	<%# Basic Info部分 %>
+	<div class="col-md-offset-2 col-md-8 bd-bottom">
 	<%# 左側 %>
-	<div class="col-md-offset-2 col-md-4">
-		<h4>HQ Country</h4>
-		<%= @company.hq_country %>
-		<h4>Multinational Capacity</h4>
+		<h2>Basic Info</h2>
+		<div class="col-md-6">
+			<h4>HQ Country</h4>
+			<%= @company.hq_country %>
+			<h4>Multinational Capacity</h4>
 
-		<%= @company.multinational %>
-		<h4>Links
-		<%= link_to new_link_path(company_id: @company), class: "btn btn-sm" do %>
-  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
-		<% end %>
-		</h4>
+			<%= @company.multinational %>
+			<h4>Links
+			<%= link_to new_link_path(company_id: @company), class: "btn btn-sm" do %>
+	  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+			<% end %>
+			</h4>
 			<ul>
 				<% @links.each do |link| %>
 				<li><%= link_to link.link_type, link.url %>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,88 +40,85 @@
 				</li>
 				<% end %>
 			</ul>
-	</div>
-
-	<%# 右側 %>
-	<div class="col-md-4">
-		<h4>Founded Date</h4>
-			<% if @company.founded_date.present? %>
-			<%= @company.founded_date %>
-			<% else %>
-			<br />
-			<% end %>
-		<h4>Closed Date</h4>
-			<% if @company.closed_date.present? %>
-			<%= @company.closed_date %>
-			<% else %>
-			<br />
-			<% end %>
-		<h4>Funding Stage</h4>
-			<% if @company.stage.present? %>
-			<%= @company.stage %>
-			<% else %>
-			<br />
-			<% end %>
-		<h4>Tags</h4>
-			<% @company.products.each do |product| %>
-				<% product.tags.each do |tag| %>
-					<%= link_to tag, tag_path(tag) %> /
-				<% end %>
-			<% end %>
-	</div>
-</div>
-
-<%# 中央下のDescription欄 %>
-<div class="row bd-bottom">
-	<div class="col-md-offset-2 col-md-8">
-		<h4>Description</h4>
-		<div>
-			<%= @company.description %>
 		</div>
-	</div>
 
-<%# Company/Description直下のコメント %>
-	<%# commentsがなければnewのリンクのみを表示する分岐 %>
-	<% if @company.comments.empty? %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h4>Comments
-		<%= link_to new_comment_path(company_id: @company), class: "btn btn-sm" do %>
-  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
-		<% end %>
-		</h4>
-	</div>
-
-	<%# commentsがあれば、全コメントを表示する %>
-	<% else %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h4>Comments
-		<%= link_to new_comment_path(company_id: @company), class: "btn btn-sm" do %>
-  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
-		<% end %>
-		</h4>
-		<% @comments.each do |com| %>
-			<div class="segment">
-				<%= com.comment %>
-				<div class="userstamp small">@<%= com.userstamp if com.userstamp.present? %><br />
-					<%= com.updated_at %><br />
-					<% if @current_user == User.find_by_name(com.userstamp) %>
-						<%= link_to "Edit", edit_comment_path(com) %> /
-						<%= link_to "Delete", com, method: :delete, data: {confirm: "You sure?"} %>
-					<% else %>
+		<%# 右側 %>
+		<div class="col-md-6">
+			<h4>Founded Date</h4>
+				<% if @company.founded_date.present? %>
+				<%= @company.founded_date %>
+				<% else %>
+				<br />
+				<% end %>
+			<h4>Closed Date</h4>
+				<% if @company.closed_date.present? %>
+				<%= @company.closed_date %>
+				<% else %>
+				<br />
+				<% end %>
+			<h4>Funding Stage</h4>
+				<% if @company.stage.present? %>
+				<%= @company.stage %>
+				<% else %>
+				<br />
+				<% end %>
+			<h4>Tags</h4>
+				<% @company.products.each do |product| %>
+					<% product.tags.each do |tag| %>
+						<%= link_to tag, tag_path(tag) %> /
 					<% end %>
-				</div>
+				<% end %>
+		</div>
+
+	<%# 中央下のDescription欄 %>
+		<div class="col-md-12">
+			<h4>Description</h4>
+			<div>
+				<%= @company.description %>
 			</div>
+		</div>
+
+	<%# Company/Description直下のコメント %>
+		<%# commentsがなければnewのリンクのみを表示する分岐 %>
+		<% if @company.comments.empty? %>
+		<div class="col-md-12 segment">
+			<h4>Comments
+			<%= link_to new_comment_path(company_id: @company), class: "btn btn-sm" do %>
+	  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+			<% end %>
+			</h4>
+		</div>
+		<%# commentsがあれば、全コメントを表示する %>
+		<% else %>
+		<div class="col-md-12 segment">
+			<h4>Comments
+			<%= link_to new_comment_path(company_id: @company), class: "btn btn-sm" do %>
+	  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+			<% end %>
+			</h4>
+			<% @comments.each do |com| %>
+				<div>
+					<%= com.comment %>
+					<div class="userstamp small">@<%= com.userstamp if com.userstamp.present? %><br />
+						<%= com.updated_at %><br />
+						<% if @current_user == User.find_by_name(com.userstamp) %>
+							<%= link_to "Edit", edit_comment_path(com) %> /
+							<%= link_to "Delete", com, method: :delete, data: {confirm: "You sure?"} %>
+						<% else %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		</div>
 		<% end %>
 	</div>
-	<% end %>
-
 </div>
 
 
-<div class="row bd-bottom" >
+<div class="row" >
 	<%# productsがなければnewのリンクのみを表示する分岐 %>
 	<% if @company.products.empty? %>
-	<div class="col-md-offset-2 col-md-8 segment">
+	<div class="col-md-offset-2 col-md-8 bd-bottom">
 		<h2>Products
 		<%= link_to new_product_path(company_id: @company), class: "btn btn-sm" do %>
   		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
@@ -129,52 +128,54 @@
 
 	<%# productsがあれば、全プロダクトを表示する %>
 	<% else %>
-	<div class="col-md-offset-2 col-md-8 segment">
+	<div class="col-md-offset-2 col-md-8 bd-bottom">
 		<h2>Products
 		<%= link_to new_product_path(company_id: @company), class: "btn btn-sm" do %>
   		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
 		<% end %>
 		</h2>
 		<% @products.each do |product| %>
-			<div class="segment">
+			<div>
 				<h3><%= product.name %></h3>
 
-				<h4>Description</h4>
-				<% if product.description.present? %>
-				<%= product.description %>
-				<% else %>
-				<br />
-				<% end %>
+				<div class="col-md-12 segment">
+					<h4>Description</h4>
+					<% if product.description.present? %>
+					<%= product.description %>
+					<% else %>
+					<br />
+					<% end %>
 
-				<h4>HR Process</h4>
-				<% if product.hr_process.present? %>
-				<%= product.hr_process %>
-				<% else %>
-				<br />
-				<% end %>
+					<h4>HR Process</h4>
+					<% if product.hr_process.present? %>
+					<%= product.hr_process %>
+					<% else %>
+					<br />
+					<% end %>
 
-				<h4>Revenue Model</h4>
-				<% if product.rev_model.present? %>
-				<%= product.rev_model %>
-				<% else %>
-				<br />
-				<% end %>
+					<h4>Revenue Model</h4>
+					<% if product.rev_model.present? %>
+					<%= product.rev_model %>
+					<% else %>
+					<br />
+					<% end %>
 
-				<h4>Released Date</h4>
-				<% if product.released_date.present? %>
-				<%= product.released_date %>
-				<% else %>
-				<br />
-				<% end %>
-				
-				<h4>Tag</h4>
-				<% product.tags.each do |tag| %>
-					<%= link_to tag, tag_path(tag) %> /
-				<% end %>
+					<h4>Released Date</h4>
+					<% if product.released_date.present? %>
+					<%= product.released_date %>
+					<% else %>
+					<br />
+					<% end %>
+					
+					<h4>Tag</h4>
+					<% product.tags.each do |tag| %>
+						<%= link_to tag, tag_path(tag) %> /
+					<% end %>
 
-				<br /><br />
-				<%= link_to "Edit", edit_product_path(product) %> /
-				<%= link_to "Delete", product, method: :delete, data: {confirm: "You sure?"} %>
+					<br /><br />
+					<%= link_to "Edit", edit_product_path(product) %> /
+					<%= link_to "Delete", product, method: :delete, data: {confirm: "You sure?"} %>
+				</div>
 			</div>
 		<% end %>
 	</div>
@@ -182,15 +183,22 @@
 </div>
 
 
-<div class="row bd-bottom">
+<div class="row">
 	<% if @company.news_articles.empty? %>	
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>News Articles</h2>
-		<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
+	<div class="col-md-offset-2 col-md-8 bd-bottom">
+		<h2>News Articles
+		<%= link_to new_news_article_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h2>
 	</div>
 	<% else %>
-	<div class="col-md-offset-2 col-md-8 segment">
-		<h2>News Articles</h2>
+	<div class="col-md-offset-2 col-md-8 bd-bottom">
+		<h2>News Articles
+		<%= link_to new_news_article_path(company_id: @company), class: "btn btn-sm" do %>
+  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+		<% end %>
+		</h2>
 		<% @news_articles.each do |article| %>
 			<div class = "segment">
 		    <h3><%= link_to article.title, article.url %></h3>
@@ -198,7 +206,8 @@
 		    Publisher: <%= article.publisher %></p>
 		    <h4>Content</h4>
 		    <div>
-			    <%= article.content%>	    	
+			    <%= truncate(article.content, length: 399) %>
+			    <%= link_to "続きを読む", article if article.content.length >= 400 %>	    	
 		    </div>
 		    <h4>Comment</h4>
 		    <div>
@@ -209,7 +218,6 @@
 				<%= link_to "Delete", article, method: :delete, data: {confirm: "You sure?"} %>
 		  </div>
   	<% end %>
-		<%= link_to "Add new article", new_news_article_path(company_id: @company) %>
 	</div>
 	<% end %>
 </div>
