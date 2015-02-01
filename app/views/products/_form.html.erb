@@ -26,10 +26,25 @@
 					</div>
 				</div>
 
+				<div class="col-md-8 col-md-offset-4">
+					<h5>HR Process List</h5>
+					<%= @all_hr_processes.each do |pr| %>
+						<%= pr %>&nbsp;/&nbsp; 
+					<% end %>
+					<div class="taglist-box">
+
+					</div>
+				</div>
+
 				<div class="form-group">
-					<%= f.label :rev_model, "Revenue Model", class: "col-md-4 control-label" %>
-					<div class="col-md-8">
-						<%= f.text_field :rev_model, class: "form-control" %>
+					<%= label_tag :new_rev_model, "Add New Revenue Model", class: "control-label col-md-4" %>
+					<div class="col-md-4">
+						<%= text_field_tag :new_rev_model, nil, placeholder: "input new revenue model", class: "form-control", size: 75 %>
+					</div>
+					<div class="col-md-1"> or </div>
+					<div class="col-md-3">
+						<%= f.select :rev_model, @rev_model_list, {prompt: "Select"}, { class: "form-control" } %>
+						<%#= f.select :rev_model, Product.all.map{|p| p.rev_model}.uniq!.compact!, {prompt: "Select"}, { class: "form-control" } %>
 					</div>
 				</div>
 

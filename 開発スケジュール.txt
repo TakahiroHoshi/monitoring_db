@@ -62,21 +62,22 @@
 	・CSV形式によるimport機能を実装する
 	・CSV形式のExport機能を実装する
 2.10. できたら改修リスト
-	・同一名称のCompanyの作成を弾く
-	・各テーブルの必須入力項目(name,)
 	* LinkとCommentでHelperのcompany_idがエラーを吐く件
 	* startsearchにタグを並べる
 	* tagのindexのページネーション
 2.11. リリースまでに改修必須リスト
 	* Cmpany#newで空白でもサブテーブルのレコードが作成されてしまうバグ
-	・brute force対策(同じIDでトライしまくったらアカウントロック)
 	* 日付つき履歴を残すコメント欄を作る
-	・HR Processを選択式にする
+	* rev_modelを選択式にする(Editだとちゃんと動かないけど実装)
+	・HR Processもタグ化する？
 	* Productとかのラベルをbgcolorつけて分かりやすく
 	* newsarticleのコメントのコンテンツを短縮して全文をリンク先(show)に
+	・各モデルのValidation(できるだけ必須にしないと空白ができてしまう)
 2.12. 運用に関して
-　・Productionのデータバックアップしてアップデートしてデータ戻す手法の確率
-
+	・Productionのデータバックアップしてアップデートしてデータ戻す手法の確率
+	・Pocketにしまったsecurity対策のガイドを読んで適切な対処をしよう
+			・bruteforce対策
+			・SQLインジェクション対策
 
 
 3. ファイルサーバ
@@ -88,3 +89,6 @@
 4.1. wikiのgem検索
 4.2. 検索機能の実装
 4.3. ユーザー権限の設定
+
+5. 未解決の課題
+	・ Productのeditでrev_modelを新規追加できない(f.selectに既存のvalueが入ってしまい空欄の選択ができないため、劣後である:new_rev_modelのtext-fieldに入力した値が反映されない)

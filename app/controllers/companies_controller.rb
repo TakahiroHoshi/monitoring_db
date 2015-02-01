@@ -59,6 +59,7 @@ class CompaniesController < ApplicationController
   end
 
   private
+    #products_attributes以下は子テーブルのフォームを組み込む場合用で今は使っていない  
     def company_params
       params.require(:company).permit(:name, :logo_image, :description, :founded_date, :closed_date, :stage, :hq_country, :multinational, 
         products_attributes: [:name, :description, :type, :released_date, :tag_list], 
