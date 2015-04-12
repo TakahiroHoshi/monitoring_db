@@ -109,6 +109,7 @@
 					</div>
 				</div>
 			<% end %>
+
 		</div>
 		<% end %>
 	</div>
@@ -147,8 +148,10 @@
 					<% end %>
 
 					<h4>HR Process</h4>
-					<% if product.hr_process.present? %>
-					<%= product.hr_process %>
+					<% if product.hr_processes.present? %>
+						<% product.hr_processes.each do |hrp| %>
+							<%= hrp.hr_process_tag %>
+						<% end %>
 					<% else %>
 					<br />
 					<% end %>
@@ -168,8 +171,12 @@
 					<% end %>
 					
 					<h4>Tag</h4>
-					<% product.tags.each do |tag| %>
-						<%= link_to tag, tag_path(tag) %> /
+					<% if product.tags.present? %>
+						<% product.tags.each do |tag| %>
+							<%= link_to tag, tag_path(tag) %> /
+						<% end %>
+					<% else %>
+					<br />
 					<% end %>
 
 					<br /><br />

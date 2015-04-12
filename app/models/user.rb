@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 		
 		#emailによるサーチをid_num昇順で返す
 	  def search(search, page)
-      paginate per_page: 30, page: page, conditions: ['email LIKE ?', "%#{search}%"], order: 'id_num ASC'
+      paginate per_page: 30, page: page, conditions: ['email LIKE ?', "%#{search}%"], order: 'id_num DESC'
   	end
 
 	end

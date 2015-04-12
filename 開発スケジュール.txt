@@ -69,7 +69,8 @@
 	* Cmpany#newで空白でもサブテーブルのレコードが作成されてしまうバグ
 	* 日付つき履歴を残すコメント欄を作る
 	* rev_modelを選択式にする(Editだとちゃんと動かないけど実装)
-	・HR Processもタグ化する？
+	* HR Processもタグ化する
+	* hr_process_tagのProductリストのページを生成し、そこへのリンクをProductとCompanyのshowの中に作る
 	* Productとかのラベルをbgcolorつけて分かりやすく
 	* newsarticleのコメントのコンテンツを短縮して全文をリンク先(show)に
 	・各モデルのValidation(できるだけ必須にしないと空白ができてしまう)

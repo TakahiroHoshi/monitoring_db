@@ -19,8 +19,10 @@
 		<% end %>
 
 		<h4>HR Process</h4>
-		<% if @product.hr_process.present? %>
-		<%= @product.hr_process %>
+		<% if @product.hr_processes.present? %>
+		<% @product.hr_processes.each do |hrp| %>
+			<%= link_to hrp.hr_process_tag, '#' %>
+		<% end %>
 		<% else %>
 		<br />
 		<% end %>

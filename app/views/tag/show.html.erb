@@ -18,14 +18,5 @@
 			</ul>
 		<% end %>
 
-		<h4>Tagged companies</h4>
-		<% @tagged_product.each do |product| %>
-			<% @company = Company.find(product.company_id) %>
-			<ul>
-				<li>
-				<%= link_to @company.name, company_path(@company) %>
-				</li>
-			</ul>
-		<% end %>
 	</div>
 </div>

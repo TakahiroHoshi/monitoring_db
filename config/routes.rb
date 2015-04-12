@@ -7,6 +7,7 @@ MonitoringDb::Application.routes.draw do
   resources :comments
   resources :links
   resources :news_articles
+  resources :hr_processes
   root 'sessions#new'
   match 'signout', to: 'sessions#destroy', via: 'delete'
   match '/help', to: 'static_pages#help', via: 'get'

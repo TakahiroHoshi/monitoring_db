@@ -10,10 +10,10 @@ class CompaniesController < ApplicationController
 
   def new
   	@company = Company.new
-    @company.products.build if @company.products.name.present?
-    @company.comments.build
-    @company.links.build
-    @company.news_articles.build
+    #@company.products.build if @company.products.name.present?
+    #@company.comments.build
+    #@company.links.build
+    #@company.news_articles.build
   end
 
   def create
@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
   def show
   	@company = Company.find(params[:id])
     @products = @company.products.paginate(page: params[:page])
-    @comments = @company.comments(page: params[:page])
+    @comments = @company.comments(page: params[:page], per_page: 5)
     @links = @company.links(page: params[:page])
     @news_articles = @company.news_articles(page: params[:page])
   end

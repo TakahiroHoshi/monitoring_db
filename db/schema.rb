@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125022121) do
+ActiveRecord::Schema.define(version: 20150215033647) do
 
   create_table "comments", force: true do |t|
     t.text     "comment"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 20150125022121) do
   end
 
   add_index "companies", ["name", "stage"], name: "index_companies_on_name_and_stage"
+
+  create_table "hr_processes", force: true do |t|
+    t.string   "hr_process_tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "links", force: true do |t|
     t.string   "link_type"
@@ -71,6 +77,16 @@ ActiveRecord::Schema.define(version: 20150125022121) do
 
   add_index "people", ["name"], name: "index_people_on_name"
 
+  create_table "product_hr_processes", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "hr_process_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_hr_processes", ["hr_process_id"], name: "index_product_hr_processes_on_hr_process_id"
+  add_index "product_hr_processes", ["product_id"], name: "index_product_hr_processes_on_product_id"
+
   create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -78,7 +94,6 @@ ActiveRecord::Schema.define(version: 20150125022121) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
-    t.string   "hr_process"
     t.string   "rev_model"
   end
 

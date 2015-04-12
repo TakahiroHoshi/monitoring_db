@@ -19,22 +19,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<%= f.label :hr_process, "HR Process", class: "col-md-4 control-label" %>
-					<div class="col-md-8">
-						<%= f.text_field :hr_process, class: "form-control" %>
-					</div>
-				</div>
 
-				<div class="col-md-8 col-md-offset-4">
-					<h5>HR Process List</h5>
-					<%= @all_hr_processes.each do |pr| %>
-						<%= pr %>&nbsp;/&nbsp; 
-					<% end %>
-					<div class="taglist-box">
-
-					</div>
-				</div>
 
 				<div class="form-group">
 					<%= label_tag :new_rev_model, "Add New Revenue Model", class: "control-label col-md-4" %>
@@ -62,6 +47,23 @@
 						<%= link_to "Edit tag list", tag_index_path, :target => "new" %><br /><br />
 					</div>
 				</div>
+
+				<%= f.fields_for :hr_process do |hp| %>
+					<div class="form-group">
+						<%= hp.label :hr_process_tag, "HR Process", class: "col-md-4 control-label" %>
+						<div class="col-md-8">
+							<%# @hr_processes.each do |hrp| %>
+							<%= collection_check_boxes(:product, :hr_process_ids, HrProcess.all, :id, :hr_process_tag) do |hrp| %>
+								<%= hrp.label {hrp.check_box + hrp.text}%>
+								<%#= check_box_tag :hr_process, hrp.hr_process_tag, false, {}  %>
+								<%# or %>
+								<%#= hp.check_box hrp.id, {}, hrp.id, false %>
+								<%#= hrp.hr_process_tag %>&nbsp;&nbsp;
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+
 			</div>
 		</div>
 		

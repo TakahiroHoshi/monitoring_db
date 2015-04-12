@@ -1,0 +1,22 @@
+<% provide(:title, @hr_process.hr_process_tag) %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1><%= @hr_process.hr_process_tag %></h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+		<h4><%= @hr_process.hr_process_tag %> products</h4>
+		<% @tagged_products.each do |prd| %>
+			<% @company = Company.find(prd.company_id) %>
+			<ul>
+				<li>
+				<%= link_to prd.name, product_path(id: prd.id) %> <%= link_to "(#{@company.name})", company_path(@company) %>
+				</li>
+			</ul>
+		<% end %>
+
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<% provide(:title, 'All HR Processes') %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1>HR Processes
+			<%= link_to new_hr_process_path, class: "btn btn-sm" do %>
+	  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+			<% end %>
+		</h1>		
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+		<ul class="hr-processes">
+			<% @hr_processes.each do |hp| %>
+		 		<li>
+		 			<%= link_to hp.hr_process_tag, hr_process_path(hp) %> | 
+					<%= link_to "Edit", edit_hr_process_path(hp) %> | 
+					<%= link_to "Delete", hp, method: :delete, data: {confirm: "You sure?"} %>
+				</li>
+			<% end %>
+		</ul>
+
+		<%= will_paginate(renderer: BootstrapPagination::Rails) %>
+	</div>
+
+	<%# 検索ボックス。結果はid昇順 %>
+	<div class="col-md-4">
+		<div class="form-inline">
+			<div class="form-group">
+				<%= form_tag hr_processes_path, :method => 'get' do %>	
+					<%= text_field_tag :search, params[:search], class: "form-control" %>
+					<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+</div>
+
