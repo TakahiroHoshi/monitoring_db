@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   #before_action :signed_in_user
-  #before_action :admin_user, only: [:index, :destroy, :new]
-  #before_action :correct_user, only: [:show, :edit, :update]
+  before_action :admin_user, only: [:index, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update]
 
 	def index
     @users = User.search(params[:search], params[:page])

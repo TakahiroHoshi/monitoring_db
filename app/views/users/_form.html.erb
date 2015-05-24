@@ -33,7 +33,7 @@
 					</div>
 				</div>
 
-				<% if current_user.admin? %>
+				<%# if current_user.admin? %>
 					<div class="form-group">
 						<div class="col-md-4 control-label">
 							<h4>Role</h4>
@@ -44,8 +44,8 @@
 							<p><%= f.check_box :observer %> オブザーバー</p>
 						</div>
 					</div>
-				<% else %>
-				<% end %>
+				<%# else %>
+				<%# end %>
 	
 				<div class="form-group">
 					<%= f.label :password, "Password", class: "col-md-4 control-label" %>
