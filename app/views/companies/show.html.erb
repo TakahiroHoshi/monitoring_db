@@ -150,15 +150,17 @@
 					<h4>HR Process</h4>
 					<% if product.hr_processes.present? %>
 						<% product.hr_processes.each do |hrp| %>
-							<%= hrp.hr_process_tag %>
+							<%= link_to hrp.hr_process_tag, hr_process_path(hrp) %> /
 						<% end %>
 					<% else %>
 					<br />
 					<% end %>
 
 					<h4>Revenue Model</h4>
-					<% if product.rev_model.present? %>
-					<%= product.rev_model %>
+					<% if product.revenue_models.present? %>
+					<% product.revenue_models.each do |rm| %>
+						<%= link_to rm.rev_model, revenue_model_path(rm) %> /
+					<% end %>
 					<% else %>
 					<br />
 					<% end %>

@@ -9,16 +9,27 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new(company_id: params[:company_id])
     @hr_processes = HrProcess.all
-    rev_model_list
+    @revenue_models = RevenueModel.all
+    #rev_model_list
   end
 
   def create
   	@product = Product.new(product_params)
-    #rev_modelをドロップダウンから選択せず新規追加する場合:new_rev_modelパラメーターを使う
     @product_hr_processes = @product.product_hr_processes.build(:hr_process_id => :hr_process)
-    @product.rev_model = params[:new_rev_model] unless params[:new_rev_model].empty?
+    @product_revenue_models = @product.product_revenue_models.build(:revenue_model_id => :revenue_model)
 		if @product.save
-      @product.hr_processes << HrProcess.find(params[:hr_process])
+=begin #以下はどうやらなくても正常に動作するらしい
+      #hr_process_idsのblankを除去して@hr_process_idsへ代入
+      hr_process_ids_remove_blank
+      #revenue_model_idsのblankを除去して@revenue_model_idsへ代入
+      revenue_model_ids_remove_blank
+      #HrProcessとProductインスタンスを関連付け
+      unless @hr_process_ids.nil?
+        @hr_process_ids.each do |hrid|
+          HrProcess.find(hrid).products << @product
+        end
+      end
+=end
 			flash[:success] = "Product successfully created."
 			redirect_to company_path(@product.company_id)
 		else
@@ -33,14 +44,27 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @hr_processes = HrProcess.all
-    rev_model_list
+    @revenue_models = RevenueModel.all
+    #rev_model_list
   end
 
   def update
     @product = Product.find(params[:id])
-    #:new_rev_modelに値が入力されていたら、:rev_modelに挿入する 
-    @product.rev_model = params[:new_rev_model] unless params[:new_rev_model].empty?
+    @product_hr_processes = @product.product_hr_processes.build(:hr_process_id => :hr_process)
+    @product_revenue_models = @product.product_revenue_models.build(:revenue_model_id => :revenue_model)
   	if @product.update_attributes(product_params)
+=begin #以下はどうやらなくても正常に動作するらしい
+      #hr_process_idsのblankを除去して@hr_process_idsへ代入
+      hr_process_ids_remove_blank
+      #revenue_model_idsのblankを除去して@revenue_model_idsへ代入
+      revenue_model_ids_remove_blank
+      #HrProcessとProductインスタンスを関連付け
+      unless @hr_process_ids.nil?
+        @hr_process_ids.each do |hrid|
+          HrProcess.find(hrid).products << @product
+        end
+      end
+=end
   		flash[:success] = "Updated successfully."
       redirect_to company_path(@product.company_id)
   	else
@@ -60,12 +84,8 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :description, :rev_model, :new_rev_model, :released_date, :company_id, :tag_list, 
-        :hr_process_ids => [])
-    end
-
-    def hr_process_params
-      params.require(:product).permit(hr_processes_attributes: [:hr_process_tag])
+      params.require(:product).permit(:name, :description, :released_date, :company_id, :tag_list, 
+        {:hr_process_ids => []}, {:revenue_model_ids => []})
     end
 
   	def observer_user
@@ -79,18 +99,31 @@ class ProductsController < ApplicationController
       end
     end
 
+=begin #以下はどうやらなくても正常に動作するらしい
+    #hr_process_idsの空白を除外するメソッド
+    def hr_process_ids_remove_blank
+      @hr_process_ids = @product.hr_process_ids
+      @hr_process_ids = @hr_process_ids.delete("")
+    end
 
-    #hr_processパラメーターのIDを取り出し、hr_processインスタンスへ代入し、product.hrprocessesに関連付けするメソッド
-#    def associate_hrprocess
-#      hrpparams = HrProcess.find(params [:id])
-#        hrpparams.each do |hrp|
-#      @product.hr_processes << params[:hr_process]
-#    end
+    #revenue_model_idsの空白を除外するメソッド
+    def revenue_model_ids_remove_blank
+      @revenue_model_ids = @product.revenue_model_ids
+      @revenue_model_ids = @revenue_model_ids.delete("")
+    end
+=end
 
+=begin #過去の遺産として一応残しているだけ
     #ユニークなrev_modelを並べるためのヘルパー的メソッド
     def rev_model_list
-      @rev_model_list = Product.all.map{|p| p.rev_model}.uniq!.compact!
-      @rev_model_list.delete("")
+        @rev_model_list = Product.all.map{|p| p.rev_model}
+        if @rev_model_list.empty? then
+          @rev_model_lsit = nil
+        elsif
+          @rev_model_list.uniq!
+          @rev_model_list.compact!
+          @rev_model_list.delete("")
+        end
     end
 
     #ユニークなhr_processを並べるためのヘルパー的メソッド
@@ -98,5 +131,6 @@ class ProductsController < ApplicationController
       @all_hr_processes = Product.all.map{|pr| pr.hr_process}.uniq!.compact!
       @all_hr_processes.delete("")
     end
+=end
 
 end

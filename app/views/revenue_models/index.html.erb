@@ -1,0 +1,41 @@
+<% provide(:title, 'All Revenue Models') %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 page-header">
+		<h1>Revenue Models
+			<%= link_to new_revenue_model_path, class: "btn btn-sm" do %>
+	  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
+			<% end %>
+		</h1>		
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-2">
+		<ul class="revenue_models">
+			<% @revenue_models.each do |hp| %>
+		 		<li>
+		 			<%= link_to hp.rev_model, revenue_model_path(hp) %> | 
+					<%= link_to "Edit", edit_revenue_model_path(hp) %> | 
+					<%= link_to "Delete", hp, method: :delete, data: {confirm: "You sure?"} %>
+				</li>
+			<% end %>
+		</ul>
+
+		<%= will_paginate(renderer: BootstrapPagination::Rails) %>
+	</div>
+
+	<%# 検索ボックス。結果はid昇順 %>
+	<div class="col-md-4">
+		<div class="form-inline">
+			<div class="form-group">
+				<%= form_tag revenue_models_path, :method => 'get' do %>	
+					<%= text_field_tag :search, params[:search], class: "form-control" %>
+					<%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+</div>
+

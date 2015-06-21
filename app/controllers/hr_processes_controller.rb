@@ -41,7 +41,7 @@ class HrProcessesController < ApplicationController
 
 	def destroy
 		HrProcess.find(params[:id]).destroy
-	  flash[:success] = "Product deleted."
+	  flash[:success] = "HR Process deleted."
     redirect_to hr_processes_path
 	end
 

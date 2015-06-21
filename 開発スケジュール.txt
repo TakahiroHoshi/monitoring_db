@@ -73,7 +73,9 @@
 	* hr_process_tagのProductリストのページを生成し、そこへのリンクをProductとCompanyのshowの中に作る
 	* Productとかのラベルをbgcolorつけて分かりやすく
 	* newsarticleのコメントのコンテンツを短縮して全文をリンク先(show)に
-	・各モデルのValidation(できるだけ必須にしないと空白ができてしまう)
+	* 各モデルのValidation(できるだけ必須にしないと空白ができてしまう)
+	* HR ProcessでCompany,Productを一覧化
+	* :new_rev_modelがちゃんと動作しない(テーブル作ったほうが早い)
 2.12. 運用に関して
 	・Productionのデータバックアップしてアップデートしてデータ戻す手法の確率
 	・Pocketにしまったsecurity対策のガイドを読んで適切な対処をしよう

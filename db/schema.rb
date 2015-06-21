@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215033647) do
+ActiveRecord::Schema.define(version: 20150621012604) do
 
   create_table "comments", force: true do |t|
     t.text     "comment"
@@ -87,6 +87,16 @@ ActiveRecord::Schema.define(version: 20150215033647) do
   add_index "product_hr_processes", ["hr_process_id"], name: "index_product_hr_processes_on_hr_process_id"
   add_index "product_hr_processes", ["product_id"], name: "index_product_hr_processes_on_product_id"
 
+  create_table "product_revenue_models", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "revenue_model_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_revenue_models", ["product_id"], name: "index_product_revenue_models_on_product_id"
+  add_index "product_revenue_models", ["revenue_model_id"], name: "index_product_revenue_models_on_revenue_model_id"
+
   create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -98,6 +108,12 @@ ActiveRecord::Schema.define(version: 20150215033647) do
   end
 
   add_index "products", ["name"], name: "index_products_on_name"
+
+  create_table "revenue_models", force: true do |t|
+    t.string   "rev_model"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
