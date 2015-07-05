@@ -82,6 +82,15 @@ class ProductsController < ApplicationController
   def search
   end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    Product.import(params[:file])
+    flash[:success] = "Products imported successfully."
+    redirect_to products_path
+  end
+
+
   private
     def product_params
       params.require(:product).permit(:name, :description, :released_date, :company_id, :tag_list, 

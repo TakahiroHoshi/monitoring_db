@@ -45,6 +45,14 @@ class NewsArticlesController < ApplicationController
     redirect_to company_path(company_id)
   end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    NewsArticle.import(params[:file])
+    flash[:success] = "News articles imported successfully."
+    redirect_to news_articles_path
+  end
+
   private
     def news_article_params
       params.require(:news_article).permit(:date, :title, :content, :comment, :publisher, :company_id, :url)

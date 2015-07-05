@@ -45,6 +45,14 @@ class HrProcessesController < ApplicationController
     redirect_to hr_processes_path
 	end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    HrProcess.import(params[:file])
+    flash[:success] = "HR processes imported successfully."
+    redirect_to hr_processes_path
+  end
+
   private
 
   	#hr_process#showでタグ付けされたProductsをリスト化するためのヘルパーメソッド

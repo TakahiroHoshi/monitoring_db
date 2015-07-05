@@ -1,14 +1,33 @@
 MonitoringDb::Application.routes.draw do
-  resources :users
   resources :sessions, only: [:new, :create, :destroy] 
-  resources :companies
-  resources :tag
-  resources :products
-  resources :comments
-  resources :links
-  resources :news_articles
-  resources :hr_processes
-  resources :revenue_models
+  resources :users do
+    collection {post :import}
+  end
+  resources :companies do
+    collection {post :import}
+  end
+  resources :products do
+    collection {post :import}
+  end
+  resources :hr_processes do
+    collection {post :import}
+  end
+  resources :revenue_models do
+    collection {post :import}
+  end  
+  resources :comments do
+    collection {post :import}
+  end
+  resources :links do
+    collection {post :import}
+  end
+  resources :news_articles do
+    collection {post :import}
+  end
+  resources :tag do
+    collection {post :import}
+  end
+
   root 'sessions#new'
   match 'signout', to: 'sessions#destroy', via: 'delete'
   match '/help', to: 'static_pages#help', via: 'get'

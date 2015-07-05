@@ -1,7 +1,10 @@
 <% provide(:title, 'All Products') %>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 page-header">
-		<h1>Products</h1>		
+		<h1>Products
+		<!-- CSVエクスポート用ボタン -->
+		<%= link_to 'Export to CSV', params.merge({:format => :csv}), class: 'btn btn-success' %>
+		</h1>		
 	</div>
 </div>
 
@@ -36,5 +39,12 @@
 				<% end %>
 			</div>
 		</div>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<!-- CSVインポート用ボタン -->
+		<%= form_tag import_products_path, multipart: true do %>
+		  <%= file_field_tag :file %>
+		  <%= submit_tag "import", class: 'btn btn-success' %>
+		<% end %>
 	</div>
 </div>

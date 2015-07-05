@@ -45,6 +45,14 @@ class LinksController < ApplicationController
     redirect_to company_path(company_id)
   end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    Link.import(params[:file])
+    flash[:success] = "Links imported successfully."
+    redirect_to links_path
+  end
+
   private
     def link_params
       params.require(:link).permit(:link_type, :url, :company_id)

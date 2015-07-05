@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
 
   def startsearch
     @tag = Tag.all
+    @hrprocess = HrProcess.all
   end
 
   private

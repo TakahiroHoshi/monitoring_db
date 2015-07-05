@@ -5,7 +5,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="text-center jumbotron">
 
-			<h1>Start your search here</h1>
+			<h1>Start your search</h1>
 
 	    <div class="form-inline search-box">
 	      <div class="form-group">
@@ -27,7 +27,14 @@
 	  	Or, create new <%= link_to "Company", new_company_path %>.	
 
 			<div class="taglist-box">	  
-				<h4>tags</h4>
+				<h4>HR Process List</h4>
+				<% @hrprocess.each do |hp| %>
+						<%= link_to hp.hr_process_tag, hp %> | 
+				<% end %>
+			</div>
+
+			<div class="taglist-box">	  
+				<h4>Tag List</h4>
 				<% @tag.each do |tag| %>
 						<%= link_to tag.name, tag %> | 
 				<% end %>

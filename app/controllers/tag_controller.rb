@@ -29,6 +29,14 @@ class TagController < ApplicationController
     redirect_to tag_index_path
 	end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    Tag.import(params[:file])
+    flash[:success] = "Tags imported successfully."
+    redirect_to tag_index_path
+  end
+
 	private
 	  def signed_in_user
       unless signed_in?

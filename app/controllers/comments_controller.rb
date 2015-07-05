@@ -46,6 +46,14 @@ class CommentsController < ApplicationController
     redirect_to company_path(company_id)
   end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    Comment.import(params[:file])
+    flash[:success] = "Comments imported successfully."
+    redirect_to comments_path
+  end
+
   private
     def comment_params
       params.require(:comment).permit(:comment, :company_id, :userstamp)

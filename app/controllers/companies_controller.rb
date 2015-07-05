@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :signed_in_user
 	before_action :as_observer, only: [:new, :edit, :destroy]
-  #commentの@current_user取得用before_action
+  # commentの@current_user取得用before_action
   before_action :current_user, only: [:show]
 
   def index
@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
 
   def new
   	@company = Company.new
+    #以下はCompany#newフォーム上でcompany, comments, links, news_articlesレコードを作成すると器用
     #@company.products.build if @company.products.name.present?
     #@company.comments.build
     #@company.links.build
@@ -58,8 +59,16 @@ class CompaniesController < ApplicationController
     redirect_to companies_url
   end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    Company.import(params[:file])
+    flash[:success] = "Companies imported successfully."
+    redirect_to companies_path
+  end
+
   private
-    #products_attributes以下は子テーブルのフォームを組み込む場合用で今は使っていない  
+    # products_attributes以下は子テーブルのフォームを組み込む場合用で今は使っていない  
     def company_params
       params.require(:company).permit(:name, :logo_image, :description, :founded_date, :closed_date, :stage, :hq_country, :multinational, 
         products_attributes: [:name, :description, :type, :released_date, :tag_list], 
@@ -75,7 +84,7 @@ class CompaniesController < ApplicationController
       end
     end
 
-    #comment作成・更新ユーザー名を取得するためのbefore_action
+    # comment作成・更新ユーザー名を取得するためのbefore_action
     def current_user
       remember_token = User.encrypt(cookies[:remember_token])
       @current_user ||= User.find_by(remember_token: remember_token)

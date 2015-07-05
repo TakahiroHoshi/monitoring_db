@@ -45,6 +45,14 @@ class RevenueModelsController < ApplicationController
     redirect_to revenue_models_path
 	end
 
+  # CSVインポート用
+  def import
+    # fileはtmpに自動で一時保存される
+    RevenueModel.import(params[:file])
+    flash[:success] = "Revenue models imported successfully."
+    redirect_to revenue_models_path
+  end
+
   private
 
   	#hr_process#showでタグ付けされたProductsをリスト化するためのヘルパーメソッド

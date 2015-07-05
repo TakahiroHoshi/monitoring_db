@@ -2,9 +2,12 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 page-header">
 		<h1>HR Processes
+			<!-- 新規追加用ボタン -->
 			<%= link_to new_hr_process_path, class: "btn btn-sm" do %>
 	  		<i class="glyphicon glyphicon-plus-sign" aria-hidden="true">New</i>
 			<% end %>
+			<!-- CSVエクスポート用ボタン -->
+			<%= link_to 'Export to CSV', params.merge({:format => :csv}), class: 'btn btn-success' %>
 		</h1>		
 	</div>
 </div>
@@ -36,6 +39,12 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="col-md-8 col-md-offset-2">
+		<!-- CSVインポート用ボタン -->
+		<%= form_tag import_hr_processes_path, multipart: true do %>
+		  <%= file_field_tag :file %>
+		  <%= submit_tag "import", class: 'btn btn-success' %>
+		<% end %>
+	</div>
 </div>
 
